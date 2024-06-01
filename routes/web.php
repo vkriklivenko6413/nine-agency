@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home');
@@ -39,5 +40,11 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::get('/{article}', [NewsController::class, 'edit'])->name('edit');
         Route::post('/{article}', [NewsController::class, 'update'])->name('update');
         Route::get('/{article}/delete', [NewsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name('videos.')->prefix('videos')->group(function () {
+        Route::get('/', [VideosController::class, 'index'])->name('index');
+        Route::post('/', [VideosController::class, 'store'])->name('store');
+        Route::get('/{video}/delete', [VideosController::class, 'destroy'])->name('destroy');
     });
 });

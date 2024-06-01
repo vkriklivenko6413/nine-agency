@@ -41,6 +41,12 @@
                 </svg> Projects
             </a>
 
+            <a class="nav-link" href="{{ route('admin.videos.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-video"></use>
+                </svg> Videos
+            </a>
+
             <a class="nav-link" href="">
                 <svg class="nav-icon">
                     <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>

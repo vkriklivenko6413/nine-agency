@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
+    <title>@yield('title')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="{{ asset('website/_next/static/css/7829407dc6bca8ce.css') }}" as="style" />
