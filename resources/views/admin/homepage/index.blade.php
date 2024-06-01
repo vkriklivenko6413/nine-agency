@@ -15,6 +15,12 @@
                         </div>
                     @endif
 
+                    @if (session('success'))
+                        <div class="alert alert-success mt-3">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     <form action="{{ route('admin.homepage.update') }}" method="post" class="mt-3"
                         enctype="multipart/form-data">
                         @csrf
@@ -41,7 +47,7 @@
                             <hr>
 
                             @include('admin.homepage.sections.ai')
-                            
+
                             <hr>
 
                             @include('admin.homepage.sections.news')

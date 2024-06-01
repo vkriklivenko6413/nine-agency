@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,10 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
     Route::redirect('/', '/admin/homepage');
 
-    Route::get('/homepage', [HomepageController::class, 'index'])->name('homepage.index');
-    Route::post('/homepage', [HomepageController::class, 'update'])->name('homepage.update');
+    Route::name('homepage.')->prefix('homepage')->group(function () {
+        Route::get('/', [HomepageController::class, 'index'])->name('index');
+        Route::post('/', [HomepageController::class, 'update'])->name('update');
+    });
 
     Route::name('projects.')->prefix('projects')->group(function () {
         Route::get('/', [ProjectsController::class, 'index'])->name('index');
@@ -47,4 +50,10 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::post('/', [VideosController::class, 'store'])->name('store');
         Route::get('/{video}/delete', [VideosController::class, 'destroy'])->name('destroy');
     });
+
+    Route::name('settings.')->prefix('settings')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('index');
+        Route::post('/', [SettingsController::class, 'update'])->name('update');
+    });
+
 });
