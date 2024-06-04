@@ -1,30 +1,33 @@
 @extends('website.layouts.app')
 
+@section('title', __('Home'))
+
 @section('content')
     <section class="w-full flex flex-col items-center">
         <div class="w-full flex justify-center md:py-40 py-10 m-container relative h-screen">
             <img src="{{ asset('website/ellipse.png') }}" alt="hero image" class="md:absolute -top-[100px] hidden" />
             <div class="flex flex-col items-center w-full justify-center">
-                <h1 class="typography_superH1__bLiEu text-center text-white">Nine Agency</h1>
+                <h1 class="typography_superH1__bLiEu text-center text-white">
+                    {{ $homepageVariables->{'intro_title_' . app()->getLocale()} ?? '' }}</h1>
                 <div class="overflow-hidden relative w-full">
                     <div class="w-full text-center overflow-hidden md:min-h-[180px]">
                         <div style="opacity: 1">
-                            <h1 class="typography_superH1__bLiEu undefined text-red">Social Media</h1>
+                            <h1 class="typography_superH1__bLiEu undefined text-red">{{ __('Social Media') }}</h1>
                         </div>
                     </div>
                 </div>
                 <p class="typography_body__0hry6 text-center mt-6 md:max-w-[520px] max-w-[303px] text-white">
-                    Lorem ipsum dolor sit amet consectetur. Lectus nam et ipsum risus magna volutpat
-                    nulla risus
-                    suscipit.
+                    {{ $homepageVariables->{'intro_text_' . app()->getLocale()} ?? '' }}
                 </p>
-                <button
-                    class="md:mt-16 mt-8 w-[330px] md:w-[170px] h-[56px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
-                    <div class="h-[56px] flex items-center justify-center">Book A Meeting</div>
-                </button>
+                <a href="{{ $homepageVariables->meeting_url ?? '' }}">
+                    <button
+                        class="md:mt-16 mt-8 w-[330px] md:w-[170px] h-[56px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
+                        <div class="h-[56px] flex items-center justify-center">{{ __('Book A Meeting') }}</div>
+                    </button>
+                </a>
                 <div class="flex items-center space-x-4 md:space-x-10 md:pt-28 pt-12 md:pb-12 md:mb-6 mb-12">
                     <div class="h-0.5 md:w-[50px] w-[28px] bg-red"></div>
-                    <p class="typography_p2__n_IL0 undefined text-white">TRUSTED BY AMAZING BRANDS</p>
+                    <p class="typography_p2__n_IL0 undefined text-white">{{ __('TRUSTED BY AMAZING BRANDS') }}</p>
                     <div class="h-0.5 md:w-[50px] w-[28px] bg-red"></div>
                 </div>
 
@@ -52,264 +55,102 @@
         <div class="flex items-start md:items-center flex-col w-full md:py-40 py-20 m-container undefined" id="projects">
             <div class="flex items-start md:items-center flex-col">
                 <h1 class="typography_h1__H_Hf_ md:text-center md:max-w-[800px] max-w-[330px] md:mb-6 mb-3 text-white">
-                    With us you dont need to worry about your brand
+                    {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 md:text-center md:max-w-[500px] w-full pb-10 text-white">
-                    Lorem ipsum dolor sit amet consectetur. Vitae erat porttitor in egestas. Molestie
-                    lobortis curabitur
-                    ut maecenas praesent. Amet consequat ut lobortis arcu.
+                    {{ $homepageVariables->{'projects_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="w-full flex flex-col items-start md:items-center justify-center">
                 <div class="md:flex flex-col items-center w-[1170px] hidden">
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/1"><img src="{{ asset('website/projectImage1.png') }}" alt="Project 1"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
+                    @foreach ($projects as $index => $project)
+                        @if ($index % 3 == 0)
+                            <!-- Single project block -->
+                            <div class="flex flex-col mb-6">
+                                <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
+                                    href="{{ route('website.project', $project->id) }}">
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}"
+                                        class="w-full rounded-[16px]" />
+                                    <div
+                                        class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
+                                        <p class="typography_p1__0Ljmd undefined text-white">{{ $project->name }}</p>
+                                        <p class="typography_body__0hry6 w-3/5 text-white">
+                                            {{ substr($project->description, 0, 50) }}...
+                                        </p>
+                                        <p class="typography_body__0hry6 underline text-white">{{ __('See more') }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                        <div class="flex space-x-6 mt-6">
-                            <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                                href="/projects/2"><img src="{{ asset('website/projectImage2.png') }}" alt="Project 2"
-                                    class="w-full rounded-[16px]" />
-                                <div
-                                    class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                    <p class="typography_p1__0Ljmd undefined text-white">Name od case
-                                        2</p>
-                                    <p class="typography_body__0hry6 w-3/5 text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Massa dictum sed
-                                        consectetur aliquet. Nulla
-                                        egestas vitae et libero commodo morbi nisl sed dolor. Accumsan
-                                        ultricies tellus nisi
-                                        aliquet velit iaculis. Egestas tortor senectus elementum feugiat
-                                        odio.
-                                    </p>
-                                    <p class="typography_body__0hry6 underline text-white">See more
-                                    </p>
-                                </div>
-                            </a><a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                                href="/projects/3"><img src="{{ asset('website/projectImage4.png') }}" alt="Project 3"
-                                    class="w-full rounded-[16px]" />
-                                <div
-                                    class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                    <p class="typography_p1__0Ljmd undefined text-white">Name od case
-                                        2</p>
-                                    <p class="typography_body__0hry6 w-3/5 text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Massa dictum sed
-                                        consectetur aliquet. Nulla
-                                        egestas vitae et libero commodo morbi nisl sed dolor. Accumsan
-                                        ultricies tellus nisi
-                                        aliquet velit iaculis. Egestas tortor senectus elementum feugiat
-                                        odio.
-                                    </p>
-                                    <p class="typography_body__0hry6 underline text-white">See more
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/4"><img src="{{ asset('website/projectImage3.png') }}" alt="Project 4"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                        <div class="flex space-x-6 mt-6">
-                            <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                                href="/projects/5"><img src="{{ asset('website/projectImage5.png') }}" alt="Project 5"
-                                    class="w-full rounded-[16px]" />
-                                <div
-                                    class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                    <p class="typography_p1__0Ljmd undefined text-white">Name od case
-                                        2</p>
-                                    <p class="typography_body__0hry6 w-3/5 text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Massa dictum sed
-                                        consectetur aliquet. Nulla
-                                        egestas vitae et libero commodo morbi nisl sed dolor. Accumsan
-                                        ultricies tellus nisi
-                                        aliquet velit iaculis. Egestas tortor senectus elementum feugiat
-                                        odio.
-                                    </p>
-                                    <p class="typography_body__0hry6 underline text-white">See more
-                                    </p>
-                                </div>
-                            </a><a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                                href="/projects/6"><img src="{{ asset('website/projectImage6.png') }}" alt="Project 6"
-                                    class="w-full rounded-[16px]" />
-                                <div
-                                    class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                    <p class="typography_p1__0Ljmd undefined text-white">Name od case
-                                        2</p>
-                                    <p class="typography_body__0hry6 w-3/5 text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Massa dictum sed
-                                        consectetur aliquet. Nulla
-                                        egestas vitae et libero commodo morbi nisl sed dolor. Accumsan
-                                        ultricies tellus nisi
-                                        aliquet velit iaculis. Egestas tortor senectus elementum feugiat
-                                        odio.
-                                    </p>
-                                    <p class="typography_body__0hry6 underline text-white">See more
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                        @elseif($index % 3 == 1)
+                            <!-- Double project block start -->
+                            <div class="flex space-x-6 mt-6">
+                                <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
+                                    href="{{ route('website.project', $project->id) }}">
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}"
+                                        class="w-full rounded-[16px]" />
+                                    <div
+                                        class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
+                                        <p class="typography_p1__0Ljmd undefined text-white">{{ $project->name }}</p>
+                                        <p class="typography_body__0hry6 w-3/5 text-white">
+                                            {{ substr($project->description, 0, 50) }}...
+                                        </p>
+                                        <p class="typography_body__0hry6 underline text-white">{{ __('See more') }}</p>
+                                    </div>
+                                </a>
+                            @else
+                                <!-- Second project in double block -->
+                                <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
+                                    href="{{ route('website.project', $project->id) }}">
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}"
+                                        class="w-full rounded-[16px]" />
+                                    <div
+                                        class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
+                                        <p class="typography_p1__0Ljmd undefined text-white">{{ $project->name }}</p>
+                                        <p class="typography_body__0hry6 w-3/5 text-white">
+                                            {{ substr($project->description, 0, 50) }}...
+                                        </p>
+                                        <p class="typography_body__0hry6 underline text-white">{{ __('See more') }}</p>
+                                    </div>
+                                </a>
+                            </div> <!-- End of double project block -->
+                        @endif
+                    @endforeach
                 </div>
+
                 <div class="md:hidden flex-col items-center w-full flex">
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/1"><img src="{{ asset('website/projectImage1.png') }}" alt="Project 1"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/2"><img src="{{ asset('website/projectImage2.png') }}" alt="Project 2"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/3"><img src="{{ asset('website/projectImage4.png') }}" alt="Project 3"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/4"><img src="{{ asset('website/projectImage3.png') }}" alt="Project 4"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/5"><img src="{{ asset('website/projectImage5.png') }}" alt="Project 5"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex flex-col mb-6">
-                        <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
-                            href="/projects/6"><img src="{{ asset('website/projectImage6.png') }}" alt="Project 6"
-                                class="w-full rounded-[16px]" />
-                            <div
-                                class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
-                                <p class="typography_p1__0Ljmd undefined text-white">Name od case 2
-                                </p>
-                                <p class="typography_body__0hry6 w-3/5 text-white">
-                                    Lorem ipsum dolor sit amet consectetur. Massa dictum sed consectetur
-                                    aliquet. Nulla egestas
-                                    vitae et libero commodo morbi nisl sed dolor. Accumsan ultricies
-                                    tellus nisi aliquet velit
-                                    iaculis. Egestas tortor senectus elementum feugiat odio.
-                                </p>
-                                <p class="typography_body__0hry6 underline text-white">See more</p>
-                            </div>
-                        </a>
-                    </div>
+                    @foreach ($projects as $index => $project)
+                        <div class="flex flex-col mb-6">
+                            <a class="flex flex-col items-center relative group overflow-hidden rounded-[16px]"
+                                href="{{ route('website.project', $project->id) }}">
+                                <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}"
+                                    class="w-full rounded-[16px]" />
+                                <div
+                                    class="flex flex-col space-y-3 absolute bg-black opacity-0 w-full bottom-0 p-6 transition-all duration-500 transform translate-y-full group-hover:opacity-80 group-hover:translate-y-0 rounded-[16px]">
+                                    <p class="typography_p1__0Ljmd undefined text-white">{{ $project->name }}</p>
+                                    <p class="typography_body__0hry6 w-3/5 text-white">
+                                        {{ substr($project->description, 0, 50) }}...
+                                    </p>
+                                    <p class="typography_body__0hry6 underline text-white">{{ __('See more') }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
-                <button
+
+                {{-- <button
                     class="mt-10 w-full md:w-[1150px] hidden rounded-[12px] text-white h-[60px] button_outlineBtn__3xUPv">
                     <div class="w-full md:w-[1150px]">See all projects</div>
-                </button>
+                </button> --}}
             </div>
+
         </div>
         <div class="flex md:flex-row flex-col items-start justify-between w-full py-40">
             <div class="min-w-[558px]">
                 <h1 class="typography_h1__H_Hf_ text-start w-[370px] md:max-w-[558px] mb-3 text-white">
-                    Search engine optimisation (SEO)
+                    {{ $homepageVariables->{'seo_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 text-start max-w-[440px] md:block hidden text-white">
-                    Lorem ipsum dolor sit amet consectetur. Vitae erat porttitor in egestas. Molestie
-                    lobortis curabitur
-                    ut maecenas praesent. Amet consequat ut lobortis arcu.
+                    {{ $homepageVariables->{'seo_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="md:flex flex-col -ml-[300px] hidden">
@@ -327,11 +168,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="typography_p1__0Ljmd mb-2 text-white">TargetIcon group</p>
+                            <p class="typography_p1__0Ljmd mb-2 text-white">
+                                {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}</p>
                             <p class="typography_body__0hry6 w-[228px] text-white">
-                                Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius eros magna
-                                dignissim lectus
-                                blandit diam nibh.
+                                {{ $homepageVariables->{'seo_block1_text_' . app()->getLocale()} ?? '' }}
                             </p>
                         </div>
                     </div>
@@ -348,11 +188,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="typography_p1__0Ljmd mb-2 text-white">Content</p>
+                            <p class="typography_p1__0Ljmd mb-2 text-white">
+                                {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}</p>
                             <p class="typography_body__0hry6 w-[228px] text-white">
-                                Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius eros magna
-                                dignissim lectus
-                                blandit diam nibh.
+                                {{ $homepageVariables->{'seo_block2_text_' . app()->getLocale()} ?? '' }}
                             </p>
                         </div>
                     </div>
@@ -371,11 +210,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="typography_p1__0Ljmd mb-2 text-white">Marketing Strategy</p>
+                            <p class="typography_p1__0Ljmd mb-2 text-white">
+                                {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}</p>
                             <p class="typography_body__0hry6 w-[228px] text-white">
-                                Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius eros magna
-                                dignissim lectus
-                                blandit diam nibh.
+                                {{ $homepageVariables->{'seo_block3_text_' . app()->getLocale()} ?? '' }}
                             </p>
                         </div>
                     </div>
@@ -393,11 +231,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="typography_p1__0Ljmd mb-2 text-white">Social Media</p>
+                            <p class="typography_p1__0Ljmd mb-2 text-white">
+                                {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}</p>
                             <p class="typography_body__0hry6 w-[228px] text-white">
-                                Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius eros magna
-                                dignissim lectus
-                                blandit diam nibh.
+                                {{ $homepageVariables->{'seo_block4_text_' . app()->getLocale()} ?? '' }}
                             </p>
                         </div>
                     </div>
@@ -414,11 +251,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="typography_p1__0Ljmd mb-2 text-white">Ranking</p>
+                            <p class="typography_p1__0Ljmd mb-2 text-white">
+                                {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}</p>
                             <p class="typography_body__0hry6 w-[228px] text-white">
-                                Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius eros magna
-                                dignissim lectus
-                                blandit diam nibh.
+                                {{ $homepageVariables->{'seo_block5_text_' . app()->getLocale()} ?? '' }}
                             </p>
                         </div>
                     </div>
@@ -441,12 +277,11 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="typography_p1__0Ljmd mb-2 text-white">TargetIcon group
+                                    <p class="typography_p1__0Ljmd mb-2 text-white">
+                                        {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}
                                     </p>
                                     <p class="typography_body__0hry6 w-[228px] text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius
-                                        eros magna dignissim lectus
-                                        blandit diam nibh.
+                                        {{ $homepageVariables->{'seo_block1_text_' . app()->getLocale()} ?? '' }}
                                     </p>
                                 </div>
                             </div>
@@ -465,11 +300,10 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="typography_p1__0Ljmd mb-2 text-white">Content</p>
+                                    <p class="typography_p1__0Ljmd mb-2 text-white">
+                                        {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}</p>
                                     <p class="typography_body__0hry6 w-[228px] text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius
-                                        eros magna dignissim lectus
-                                        blandit diam nibh.
+                                        {{ $homepageVariables->{'seo_block2_text_' . app()->getLocale()} ?? '' }}
                                     </p>
                                 </div>
                             </div>
@@ -488,12 +322,10 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="typography_p1__0Ljmd mb-2 text-white">Marketing
-                                        Strategy</p>
+                                    <p class="typography_p1__0Ljmd mb-2 text-white">
+                                        {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}</p>
                                     <p class="typography_body__0hry6 w-[228px] text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius
-                                        eros magna dignissim lectus
-                                        blandit diam nibh.
+                                        {{ $homepageVariables->{'seo_block3_text_' . app()->getLocale()} ?? '' }}
                                     </p>
                                 </div>
                             </div>
@@ -513,11 +345,10 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="typography_p1__0Ljmd mb-2 text-white">Social Media</p>
+                                    <p class="typography_p1__0Ljmd mb-2 text-white">
+                                        {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}</p>
                                     <p class="typography_body__0hry6 w-[228px] text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius
-                                        eros magna dignissim lectus
-                                        blandit diam nibh.
+                                        {{ $homepageVariables->{'seo_block4_text_' . app()->getLocale()} ?? '' }}
                                     </p>
                                 </div>
                             </div>
@@ -536,11 +367,10 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="typography_p1__0Ljmd mb-2 text-white">Ranking</p>
+                                    <p class="typography_p1__0Ljmd mb-2 text-white">
+                                        {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}</p>
                                     <p class="typography_body__0hry6 w-[228px] text-white">
-                                        Lorem ipsum dolor sit amet consectetur. Tincidunt eget varius
-                                        eros magna dignissim lectus
-                                        blandit diam nibh.
+                                        {{ $homepageVariables->{'seo_block5_text_' . app()->getLocale()} ?? '' }}
                                     </p>
                                 </div>
                             </div>
@@ -552,54 +382,56 @@
         <div class="flex items-start md:items-center flex-col w-full md:py-40 py-20 m-container undefined" id="about">
             <div class="flex items-start md:items-center flex-col">
                 <h1 class="typography_h1__H_Hf_ md:text-center md:max-w-[800px] max-w-[330px] md:mb-6 mb-3 text-white">
-                    Marketing
+                    {{ $homepageVariables->{'marketing_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 md:text-center md:max-w-[500px] w-full pb-10 text-white">
-                    Lorem ipsum dolor sit amet consectetur. Vitae erat porttitor in egestas. Molestie
-                    lobortis curabitur
-                    ut maecenas praesent.
+                    {{ $homepageVariables->{'marketing_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="flex flex-col md:flex-row m-container justify-center">
                 <div class="relative group w-full">
                     <div class="w-full h-full bg-black absolute opacity-60 group-hover:opacity-0 transition duration-300">
                     </div>
-                    <img src="{{ asset('website/marketing1.png') }}" alt="experience" />
+                    <img src="{{ Storage::url($homepageVariables->years_experience_img ?? '') }}" alt="experience" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">7+</h2>
-                        <p class="typography_body__0hry6 undefined text-white">years of experience
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->years_experience ?? '' }}
+                        </h2>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('years of experience') }}+
                         </p>
                     </div>
                 </div>
                 <div class="relative group w-full">
                     <div class="w-full h-full bg-black absolute opacity-60 group-hover:opacity-0 transition duration-300">
                     </div>
-                    <img src="{{ asset('website/marketing2.png') }}" alt="members" />
+                    <img src="{{ Storage::url($homepageVariables->team_members_img ?? '') }}" alt="members" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">23+</h2>
-                        <p class="typography_body__0hry6 undefined text-white">team members</p>
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->team_members ?? '' }}
+                        </h2>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('team members') }}+</p>
                     </div>
                 </div>
                 <div class="relative group w-full">
                     <div class="w-full h-full bg-black absolute opacity-60 group-hover:opacity-0 transition duration-300">
                     </div>
-                    <img src="{{ asset('website/marketing3.png') }}" alt="clients" />
+                    <img src="{{ Storage::url($homepageVariables->satisfied_clients_img ?? '') }}" alt="clients" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">70+</h2>
-                        <p class="typography_body__0hry6 undefined text-white">satisfied clients</p>
+                        <h2 class="typography_sub__jABiX mb-2 text-white">
+                            {{ $homepageVariables->satisfied_clients ?? '' }}</h2>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('satisfied clients') }}+</p>
                     </div>
                 </div>
                 <div class="relative group w-full">
                     <div class="w-full h-full bg-black absolute opacity-60 group-hover:opacity-0 transition duration-300">
                     </div>
-                    <img src="{{ asset('website/marketing4.png') }}" alt="videos" />
+                    <img src="{{ Storage::url($homepageVariables->company_videos_img ?? '') }}" alt="videos" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">200+</h2>
-                        <p class="typography_body__0hry6 undefined text-white">company videos created
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->company_videos ?? '' }}
+                        </h2>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('company videos created') }}+
                         </p>
                     </div>
                 </div>
@@ -608,317 +440,64 @@
         <div class="flex items-start md:items-center flex-col w-full md:py-40 py-20 m-container undefined">
             <div class="flex items-start md:items-center flex-col">
                 <h1 class="typography_h1__H_Hf_ md:text-center md:max-w-[800px] max-w-[330px] md:mb-6 mb-3 text-white">
-                    Video Production
+                    {{ $homepageVariables->{'videos_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 md:text-center md:max-w-[500px] w-full pb-10 text-white">
-                    We provide a wide range of video production services, from filming to editing. Here
-                    are some of our
-                    video production services.
+                    {{ $homepageVariables->{'videos_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="flex flex-col items-center">
                 <div class="hidden md:block">
                     <div class="swiper w-[1100px] m-auto">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-0"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
+                            @foreach ($videos as $key => $video)
+                                <div class="swiper-slide max-h-min">
+                                    <div class="rounded-[16px] relative">
+                                        <video id="video-{{ $key }}" src="{{ Storage::url($video->video) }}"
+                                            style="display: block;
+                                                margin-left: auto;
+                                                margin-right: auto;"></video>
+                                        <div
+                                            class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
+                                            <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
+                                                <path
+                                                    d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
+                                                    fill="white"></path>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-1"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-2"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-3"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-4"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-5"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-6"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-7"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide max-h-min">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-8"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="md:hidden">
                     <div class="swiper md:hidden block w-full m-auto">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-0-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
+                            @foreach ($videos as $key => $video)
+                                <div class="swiper-slide">
+                                    <div class="rounded-[16px] relative">
+                                        <video id="video-0-m" src="{{ Storage::url($video->video) }}"></video>
+                                        <div
+                                            class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
+                                            <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
+                                                <path
+                                                    d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
+                                                    fill="white"></path>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-1-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-2-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-3-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-4-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-5-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-6-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-7-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[16px] relative">
-                                    <video id="video-8-m"
-                                        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-                                    <div
-                                        class="absolute z-50 top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-                                        <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="36.5" cy="36.5" r="36.5" fill="#F62424"></circle>
-                                            <path
-                                                d="M49.5 35.134C50.1667 35.5189 50.1667 36.4811 49.5 36.866L30 48.1244C29.3333 48.5093 28.5 48.0281 28.5 47.2583L28.5 24.7417C28.5 23.9719 29.3333 23.4907 30 23.8756L49.5 35.134Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center space-x-8 mt-6">
-                    <button>
+                    <button class="swiper-b-button-prev">
                         <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="36.5" cy="36.5" r="36" transform="matrix(-1 0 0 1 73 0)"
@@ -926,7 +505,9 @@
                             <path
                                 d="M31.2898 36.006L39.7818 44.733C39.8517 44.8033 39.907 44.8868 39.9444 44.9786C39.9819 45.0704 40.0007 45.1688 39.9999 45.2679C39.9991 45.3671 39.9786 45.4651 39.9396 45.5563C39.9007 45.6475 39.844 45.7301 39.773 45.7992C39.7019 45.8684 39.6178 45.9228 39.5256 45.9592C39.4334 45.9957 39.3348 46.0135 39.2357 46.0116C39.1365 46.0097 39.0387 45.9882 38.9479 45.9482C38.8572 45.9083 38.7752 45.8508 38.7068 45.779L29.7068 36.529C29.5706 36.3889 29.4944 36.2013 29.4944 36.006C29.4944 35.8106 29.5706 35.623 29.7068 35.483L38.7068 26.2329C38.7752 26.1611 38.8572 26.1036 38.9479 26.0637C39.0387 26.0237 39.1365 26.0022 39.2357 26.0003C39.3348 25.9984 39.4333 26.0162 39.5256 26.0527C39.6178 26.0891 39.7019 26.1435 39.773 26.2127C39.844 26.2818 39.9007 26.3644 39.9396 26.4556C39.9786 26.5468 39.9991 26.6448 39.9999 26.744C40.0007 26.8431 39.9819 26.9415 39.9444 27.0333C39.907 27.1251 39.8517 27.2086 39.7818 27.279L31.2898 36.006Z"
                                 fill="#FDFFFF"></path>
-                        </svg></button><button>
+                        </svg>
+                    </button>
+                    <button class="swiper-b-button-next">
                         <svg width="73" height="73" viewBox="0 0 73 73" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="36.5" cy="36.5" r="36" stroke="#FDFFFF">
@@ -942,21 +523,19 @@
         <div class="flex items-start md:items-center flex-col w-full md:py-40 py-20 m-container undefined">
             <div class="flex items-start md:items-center flex-col">
                 <h1 class="typography_h1__H_Hf_ md:text-center md:max-w-[800px] max-w-[330px] md:mb-6 mb-3 text-white">
-                    AI Solutions AI Agents and Chatbots
+                    {{ $homepageVariables->{'ai_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 md:text-center md:max-w-[500px] w-full pb-10 text-white">
-                    Lorem ipsum dolor sit amet consectetur. Vitae erat porttitor in egestas. Molestie
-                    lobortis curabitur
-                    ut maecenas praesent. Amet consequat ut lobortis arcu.
+                    {{ $homepageVariables->{'ai_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="">
                 <div class="md:flex items-center space-x-6 justify-center hidden">
-                    <img src="{{ asset('website/solutions2.png') }}" alt="solution"
+                    <img src="{{ Storage::url($homepageVariables->ai_section_img_1 ?? '') }}" alt="solution"
                         class="w-full h-[300px] object-cover" />
-                    <img src="{{ asset('website/solutions1.png') }}" alt="solution"
+                    <img src="{{ Storage::url($homepageVariables->ai_section_img_2 ?? '') }}" alt="solution"
                         class="w-full h-[300px] object-cover" />
-                    <img src="{{ asset('website/solutions3.png') }}" alt="solution"
+                    <img src="{{ Storage::url($homepageVariables->ai_section_img_3 ?? '') }}" alt="solution"
                         class="w-full h-[300px] object-cover" />
                 </div>
                 <div class="md:hidden">
@@ -982,255 +561,72 @@
         <div class="flex flex-col w-full md:py-40 py-20 m-container">
             <div class="md:pb-20 pb-10 border-b border-white md:w-full w-[330px]">
                 <h1 class="typography_h1__H_Hf_ md:w-[570px] w-[330px] text-white">
-                    Stay up - to - date with our latest news.
+                    {{ $homepageVariables->{'news_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
             </div>
-            <div
-                class="flex flex-col md:flex-row items-start justify-between w-[330px] md:w-full md:py-10 py-5 border-b border-white">
+
+            @foreach ($news->chunk(3) as $newsChunk)
                 <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/1">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
+                    class="flex flex-col md:flex-row items-start justify-between w-[330px] md:w-full md:py-10 py-5 border-b border-white">
+                    @foreach ($newsChunk as $article)
+                        <div
+                            class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
+                            <img src="{{ $article->getFirstMediaUrl('images') }}" alt="news"
+                                class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
+                            <div
+                                class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
+                                <p class="typography_body__0hry6 md:mb-2 text-white">{{ $article->created_at }}</p>
+                                <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
+                                    {{ $article->title }}
+                                </p>
+                                <p class="typography_body__0hry6 mb-1 md:hidden text-white">
+                                    {{ substr($article->description, 0, 50) }}...
+                                </p>
+                                <a class="mt-3" href="{{ route('website.article', $article->slug) }}">
+                                    <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
+                                        {{ __('Read more') }}
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/2">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/3">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="flex flex-col md:flex-row items-start justify-between w-[330px] md:w-full md:py-10 py-5 border-b border-white">
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/4">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/5">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/6">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="flex flex-col md:flex-row items-start justify-between w-[330px] md:w-full md:py-10 py-5 border-b border-white">
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/7">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/8">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="md:block flex md:flex-col items-center rounded-[16px] w-[330px] md:w-[364px] md:h-[400px] h-[120px] relative mb-6">
-                    <img src="{{ asset('website/new.png') }}" alt="news"
-                        class="rounded-t-[16px] md:w-[364px] md:h-[180px] w-[133px] h-[120px] object-cover" />
-                    <div
-                        class="bg-gray rounded-[16px] md:p-6 p-4 md:-mt-4 absolute md:min-h-[213px] md:w-full w-[213px] h-[120px] right-0">
-                        <p class="typography_body__0hry6 md:mb-2 text-white">28 May 2024</p>
-                        <p class="typography_body__0hry6 mb-4 hidden md:block text-white">
-                            Lorem ipsum dolor sit amet consectetur. Morbi tincidunt tempus scelerisque
-                            egestas risus
-                            posuere. Aliquet neque mauris vehicula viverra. Habitant in sapien quis
-                            dolor enim etiam ac amet
-                            aliquam.
-                        </p>
-                        <p class="typography_body__0hry6 mb-1 md:hidden text-white">
-                            Lorem ipsum dolor sit amet consecte...
-                        </p>
-                        <a class="mt-3" href="/news/9">
-                            <p class="typography_body__0hry6 underline hover:no-underline text-redLight">
-                                Read more</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <button
-                class="mt-10 md:mt-20 w-[330px] md:w-[1150px] rounded-[12px] text-white h-[60px] button_outlineBtn__3xUPv">
-                <div class="w-[330px] md:w-[1150px]">Reed all news</div>
-            </button>
+            @endforeach
+
+
+            <a href="{{ route('website.news') }}">
+                <button
+                    class="mt-10 md:mt-20 w-[330px] md:w-[1150px] rounded-[12px] text-white h-[60px] button_outlineBtn__3xUPv">
+                    <div class="w-[330px] md:w-[1150px]">{{ __('Read all news') }}</div>
+                </button>
+            </a>
         </div>
         <div class="flex items-start md:items-center flex-col w-full md:py-40 py-20 m-container undefined" id="contact">
             <div class="flex items-start md:items-center flex-col">
                 <h1 class="typography_h1__H_Hf_ md:text-center md:max-w-[800px] max-w-[330px] md:mb-6 mb-3 text-white">
-                    Get in touch
+                    {{ $homepageVariables->{'contact_section_title_' . app()->getLocale()} ?? '' }}
                 </h1>
                 <p class="typography_body__0hry6 md:text-center md:max-w-[500px] w-full pb-10 text-white">
-                    Lorem ipsum dolor sit amet consectetur. Vitae erat porttitor in egestas. Molestie
-                    lobortis curabitur
-                    ut maecenas praesent. Amet consequat ut lobortis arcu.
+                    {{ $homepageVariables->{'contact_section_text_' . app()->getLocale()} ?? '' }}
                 </p>
             </div>
             <div class="border border-white p-6 rounded-[16px] md:flex space-x-20 hidden">
                 <div class="bg-gray p-10 rounded-[16px] h-[435px] w-[460px]">
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">Contact us</p>
-                        <p class="typography_body__0hry6 undefined text-white">+373 78 21 99 20</p>
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Contact us') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_phone ?? '' }}</p>
                     </div>
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">E - mail</p>
-                        <p class="typography_body__0hry6 undefined text-white">9amagency@gmail.com
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Email') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_email ?? '' }}
                         </p>
                     </div>
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">Address</p>
-                        <p class="typography_body__0hry6 undefined text-white">Strada Albișoara 78/1
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Address') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_address ?? '' }}
                         </p>
                     </div>
                 </div>
@@ -1238,15 +634,16 @@
                     <div class="flex flex-col space-y-4 pt-8 mb-8">
                         <input type="text"
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="Name" value="" /><input type="text"
+                            placeholder="{{ __('Name') }}" value="" />
+                        <input type="text"
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="Phone" value="" />
+                            placeholder="{{ __('Phone') }}" value="" />
                         <textarea
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
-                            placeholder="Message"></textarea>
+                            placeholder="{{ __('Message') }}"></textarea>
                     </div>
                     <button class="w-[257px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
-                        <div class="w-[257px]">Send a message</div>
+                        <div class="w-[257px]">{{ __('Send a message') }}</div>
                     </button>
                 </div>
             </div>
@@ -1255,31 +652,35 @@
                     <div class="flex flex-col space-y-4 pt-8 mb-8">
                         <input type="text"
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="Name" value="" /><input type="text"
+                            placeholder="{{ __('Name') }}" value="" />
+                        <input type="text"
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="Phone" value="" />
+                            placeholder="{{ __('Phone') }}" value="" />
                         <textarea
                             class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
-                            placeholder="Message"></textarea>
+                            placeholder="{{ __('Message') }}"></textarea>
                     </div>
                     <button class="w-330px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
-                        <div class="w-[330px]">Send a message</div>
+                        <div class="w-[330px]">{{ __('Send a message') }}</div>
                     </button>
                 </div>
                 <div class="h-[1px] bg-white w-full my-14"></div>
                 <div class="bg-gray p-10 rounded-[16px] h-[340px] w-[330px]">
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">Contact us</p>
-                        <p class="typography_body__0hry6 undefined text-white">+373 78 21 99 20</p>
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Contact us') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_phone ?? '' }}</p>
                     </div>
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">E - mail</p>
-                        <p class="typography_body__0hry6 undefined text-white">9amagency@gmail.com
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Email') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_email ?? '' }}
                         </p>
                     </div>
                     <div class="mb-10">
-                        <p class="typography_p1__0Ljmd mb-2 text-white">Address</p>
-                        <p class="typography_body__0hry6 undefined text-white">Strada Albișoara 78/1
+                        <p class="typography_p1__0Ljmd mb-2 text-white">{{ __('Address') }}</p>
+                        <p class="typography_body__0hry6 undefined text-white">
+                            {{ $homepageVariables->contact_address ?? '' }}
                         </p>
                     </div>
                 </div>

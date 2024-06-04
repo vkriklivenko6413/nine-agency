@@ -3,9 +3,9 @@
 @section('content')
     <div>
         <div class="flex flex-col w-full md:py-40 py-20 m-container">
-            <p class="typography_p1__0Ljmd undefined text-white">Name od case 2</p>
+            <p class="typography_p1__0Ljmd undefined text-white">{{ $project->title }}</p>
             <p class="typography_body__0hry6 w-full  text-white">
-                
+                {{ $project->description }}
             </p>
             <div class="md:flex space-x-6 hidden">
                 <div class="flex flex-col">

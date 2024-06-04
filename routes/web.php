@@ -6,18 +6,25 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VideosController;
+use App\Http\Controllers\Website\HomepageController as WebsiteHomepageController;
+use App\Http\Controllers\Website\NewsController as WebsiteNewsController;
+use App\Http\Controllers\Website\ProjectsController as WebsiteProjectsController;
+use App\Http\Middleware\LoadAdminVariables;
+use App\Http\Middleware\LoadWebsiteVariables;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'website.home');
-Route::view('/news', 'website.news');
-Route::view('/article', 'website.article');
-Route::view('/project', 'website.project');
+Route::name('website.')->middleware(LoadWebsiteVariables::class)->group(function () {
+    Route::get('/', [WebsiteHomepageController::class, 'index'])->name('homepage');
+    Route::get('/news', [WebsiteNewsController::class, 'index'])->name('news');
+    Route::get('/news/{articleSlug}', [WebsiteNewsController::class, 'article'])->name('article');
+    Route::get('/project/{projectSlug}', [WebsiteProjectsController::class, 'project'])->name('project');
+});
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::class])->group(function () {
 
     Route::redirect('/', '/admin/homepage');
 
@@ -55,5 +62,4 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/', [SettingsController::class, 'update'])->name('update');
     });
-
 });
