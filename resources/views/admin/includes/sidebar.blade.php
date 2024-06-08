@@ -25,15 +25,27 @@
             <!--</ul>--> --}}
             <a class="nav-link" href="{{ route('admin.homepage.index') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-diamond"></use>
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-home"></use>
                 </svg> Homepage
             </a>
 
-            {{-- <a class="nav-link" href="{{ route('admin.settings.index') }}">
+            <a class="nav-link" href="{{ route('admin.news.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-newspaper"></use>
+                </svg> News
+            </a>
+
+            <a class="nav-link" href="{{ route('admin.projects.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-diamond"></use>
+                </svg> Projects
+            </a>
+
+            <a class="nav-link" href="">
                 <svg class="nav-icon">
                     <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                 </svg> Settings
-            </a> --}}
+            </a>
         </li>
     </ul>
     <!--<button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>-->

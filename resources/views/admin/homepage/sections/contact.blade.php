@@ -21,7 +21,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="contact_section_title_{{ $key }}"
                         id="contact_section_title_{{ $key }}" class="form-control"
-                        value="{{ old('contact_section_title_' . $key, $variables?->{"contact_section_title_$key"}) }}">
+                        value="{{ old('contact_section_title_' . $key, $variables->{"contact_section_title_$key"} ?? '') }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -29,7 +29,7 @@
                     ({{ $label }})</label>
                 <div class="input-group mb-3">
                     <textarea name="contact_section_text_{{ $key }}" id="contact_section_text_{{ $key }}" rows="3"
-                        class="form-control">{{ old('contact_section_text_' . $key, $variables?->{"contact_section_text_$key"}) }}</textarea>
+                        class="form-control">{{ old('contact_section_text_' . $key, $variables->{"contact_section_text_$key"} ?? '') }}</textarea>
                 </div>
             </div>
         </div>
@@ -40,20 +40,20 @@
     <label for="contact_phone" class="form-label">Contact Phone</label>
     <div class="input-group mb-3">
         <input type="text" name="contact_phone" id="contact_phone" class="form-control"
-            value="{{ old('contact_phone', $variables?->contact_phone) }}">
+            value="{{ old('contact_phone', $variables->contact_phone ?? '') }}">
     </div>
 </div>
 <div class="col-md-4">
     <label for="contact_email" class="form-label">Contact Email</label>
     <div class="input-group mb-3">
         <input type="text" name="contact_email" id="contact_email" class="form-control"
-            value="{{ old('contact_email', $variables?->contact_email) }}">
+            value="{{ old('contact_email', $variables->contact_email ?? '') }}">
     </div>
 </div>
 <div class="col-md-4">
     <label for="contact_address" class="form-label">Contact Address</label>
     <div class="input-group mb-3">
         <input type="text" name="contact_address" id="contact_address" class="form-control"
-            value="{{ old('contact_address', $variables?->contact_address) }}">
+            value="{{ old('contact_address', $variables->contact_address ?? '') }}">
     </div>
 </div>

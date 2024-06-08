@@ -21,7 +21,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="projects_section_title_{{ $key }}"
                         id="projects_section_title_{{ $key }}" class="form-control"
-                        value="{{ old('projects_section_title_' . $key, $variables?->{'projects_section_title_' . $key}) }}">
+                        value="{{ old('projects_section_title_' . $key, $variables->{'projects_section_title_' . $key} ?? '') }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -29,7 +29,7 @@
                     ({{ $label }})</label>
                 <div class="input-group mb-3">
                     <textarea name="projects_section_text_{{ $key }}" id="projects_section_text_{{ $key }}"
-                        rows="3" class="form-control">{{ old('projects_section_text_' . $key, $variables?->{'projects_section_text_' . $key}) }}</textarea>
+                        rows="3" class="form-control">{{ old('projects_section_text_' . $key, $variables->{'projects_section_text_' . $key} ?? '') }}</textarea>
                 </div>
             </div>
         </div>

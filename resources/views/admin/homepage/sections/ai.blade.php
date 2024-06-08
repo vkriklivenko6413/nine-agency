@@ -20,7 +20,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="ai_section_title_{{ $key }}"
                         id="ai_section_title_{{ $key }}" class="form-control"
-                        value="{{ old('ai_section_title_' . $key, $variables?->{"ai_section_title_$key"}) }}">
+                        value="{{ old('ai_section_title_' . $key, $variables->{"ai_section_title_$key"} ?? '') }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -28,7 +28,7 @@
                     ({{ $label }})</label>
                 <div class="input-group mb-3">
                     <textarea name="ai_section_text_{{ $key }}" id="ai_section_text_{{ $key }}" rows="3"
-                        class="form-control">{{ old('ai_section_text_' . $key, $variables?->{"ai_section_text_$key"}) }}</textarea>
+                        class="form-control">{{ old('ai_section_text_' . $key, $variables->{"ai_section_text_$key"} ?? '') }}</textarea>
                 </div>
             </div>
         </div>

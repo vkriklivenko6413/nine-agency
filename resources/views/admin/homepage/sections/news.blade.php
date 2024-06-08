@@ -20,7 +20,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="news_section_title_{{ $key }}"
                         id="news_section_title_{{ $key }}" class="form-control"
-                        value="{{ old('news_section_title_' . $key, $variables?->{"news_section_title_$key"}) }}">
+                        value="{{ old('news_section_title_' . $key, $variables->{"news_section_title_$key"} ?? '') }}">
                 </div>
             </div>
         </div>

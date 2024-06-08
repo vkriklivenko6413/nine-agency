@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomepageController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProjectsController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home');
@@ -14,6 +16,28 @@ Route::post('login', [AuthController::class, 'login'])->name('login.post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
-    Route::post('/', [HomepageController::class, 'update'])->name('homepage.update');
+
+    Route::redirect('/', '/admin/homepage');
+
+    Route::get('/homepage', [HomepageController::class, 'index'])->name('homepage.index');
+    Route::post('/homepage', [HomepageController::class, 'update'])->name('homepage.update');
+
+    Route::name('projects.')->prefix('projects')->group(function () {
+        Route::get('/', [ProjectsController::class, 'index'])->name('index');
+        Route::get('/add', [ProjectsController::class, 'create'])->name('create');
+        Route::post('/add', [ProjectsController::class, 'store'])->name('store');
+        Route::get('/{project}', [ProjectsController::class, 'edit'])->name('edit');
+        Route::post('/{project}', [ProjectsController::class, 'update'])->name('update');
+        Route::get('/{project}/delete', [ProjectsController::class, 'destroy'])->name('destroy');
+        Route::get('/{project}/images/{mediaId}/delete', [ProjectsController::class, 'destroyPhoto'])->name('images.destroy');
+    });
+
+    Route::name('news.')->prefix('news')->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+        Route::get('/add', [NewsController::class, 'create'])->name('create');
+        Route::post('/add', [NewsController::class, 'store'])->name('store');
+        Route::get('/{article}', [NewsController::class, 'edit'])->name('edit');
+        Route::post('/{article}', [NewsController::class, 'update'])->name('update');
+        Route::get('/{article}/delete', [NewsController::class, 'destroy'])->name('destroy');
+    });
 });

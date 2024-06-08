@@ -21,7 +21,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="intro_title_{{ $key }}" id="intro_title_{{ $key }}"
                         class="form-control"
-                        value="{{ old('intro_title_' . $key, $variables?->{'intro_title_' . $key}) }}">
+                        value="{{ old('intro_title_' . $key, $variables->{'intro_title_' . $key} ?? '') }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -29,7 +29,7 @@
                     ({{ $label }})</label>
                 <div class="input-group mb-3">
                     <textarea name="intro_text_{{ $key }}" id="intro_text_{{ $key }}" rows="3"
-                        class="form-control">{{ old('intro_text_' . $key, $variables?->{'intro_text_' . $key}) }}</textarea>
+                        class="form-control">{{ old('intro_text_' . $key, $variables->{'intro_text_' . $key} ?? '') }}</textarea>
                 </div>
             </div>
         </div>
@@ -40,6 +40,6 @@
     <label for="meeting_url" class="form-label">Book a Meeting URL</label>
     <div class="input-group mb-3">
         <input type="url" name="meeting_url" id="meeting_url" class="form-control"
-            value="{{ old('meeting_url', $variables?->meeting_url) }}">
+            value="{{ old('meeting_url', $variables->meeting_url ?? '') }}">
     </div>
 </div>

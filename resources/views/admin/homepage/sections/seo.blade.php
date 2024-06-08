@@ -20,7 +20,7 @@
                 <div class="input-group mb-3">
                     <input type="text" name="seo_section_title_{{ $key }}"
                         id="seo_section_title_{{ $key }}" class="form-control"
-                        value="{{ old('seo_section_title_' . $key, $variables?->{"seo_section_title_$key"}) }}">
+                        value="{{ old('seo_section_title_' . $key, $variables->{"seo_section_title_$key"} ?? '') }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -28,7 +28,7 @@
                     ({{ $label }})</label>
                 <div class="input-group mb-3">
                     <textarea name="seo_section_text_{{ $key }}" id="seo_section_text_{{ $key }}" rows="3"
-                        class="form-control">{{ old('seo_section_text_' . $key, $variables?->{"seo_section_text_$key"}) }}</textarea>
+                        class="form-control">{{ old('seo_section_text_' . $key, $variables->{"seo_section_text_$key"} ?? '') }}</textarea>
                 </div>
             </div>
             <div class="accordion mb-3" id="accordionSEO_{{ $key }}">
@@ -53,7 +53,7 @@
                                             name="seo_block{{ $i }}_title_{{ $key }}"
                                             id="seo_block{{ $i }}_title_{{ $key }}"
                                             class="form-control"
-                                            value="{{ old('seo_block' . $i . '_title_' . $key, $variables?->{"seo_block{$i}_title_$key"}) }}">
+                                            value="{{ old('seo_block' . $i . '_title_' . $key, $variables->{"seo_block{$i}_title_$key"} ?? '') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -62,7 +62,7 @@
                                         ({{ $label }})</label>
                                     <div class="input-group mb-3">
                                         <textarea name="seo_block{{ $i }}_text_{{ $key }}"
-                                            id="seo_block{{ $i }}_text_{{ $key }}" rows="3" class="form-control">{{ old('seo_block' . $i . '_text_' . $key, $variables?->{"seo_block{$i}_text_$key"}) }}</textarea>
+                                            id="seo_block{{ $i }}_text_{{ $key }}" rows="3" class="form-control">{{ old('seo_block' . $i . '_text_' . $key, $variables->{"seo_block{$i}_text_$key"} ?? '') }}</textarea>
                                     </div>
                                 </div>
                             </div>
