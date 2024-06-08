@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="{{ asset('website/_next/static/css/7829407dc6bca8ce.css') }}" as="style" />
     <link rel="stylesheet" href="{{ asset('website/_next/static/css/7829407dc6bca8ce.css') }}" data-n-g="" />
+    <link rel="stylesheet" href="{{ asset('website/popup.css') }}" data-n-g="" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <noscript data-n-css=""></noscript>
     <style data-href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap">

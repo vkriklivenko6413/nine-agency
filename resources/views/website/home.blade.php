@@ -631,39 +631,45 @@
                     </div>
                 </div>
                 <div class="w-[540px]">
-                    <div class="flex flex-col space-y-4 pt-8 mb-8">
-                        <input type="text"
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="{{ __('Name') }}" value="" />
-                        <input type="text"
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="{{ __('Phone') }}" value="" />
-                        <textarea
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
-                            placeholder="{{ __('Message') }}"></textarea>
-                    </div>
-                    <button class="w-[257px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
-                        <div class="w-[257px]">{{ __('Send a message') }}</div>
-                    </button>
+                    <form action="{{ route('website.contact.send') }}" method="post">
+                        @csrf
+                        <div class="flex flex-col space-y-4 pt-8 mb-8">
+                            <input type="text"
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
+                                placeholder="{{ __('Name') }}" name="name" value="" />
+                            <input type="text"
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
+                                placeholder="{{ __('Phone') }}" name="phone" value="" />
+                            <textarea
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
+                                placeholder="{{ __('Message') }}" name="message"></textarea>
+                        </div>
+                        <button class="w-[257px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
+                            <div class="w-[257px]">{{ __('Send a message') }}</div>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="md:hidden">
-                <div class="w-[330px]">
-                    <div class="flex flex-col space-y-4 pt-8 mb-8">
-                        <input type="text"
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="{{ __('Name') }}" value="" />
-                        <input type="text"
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
-                            placeholder="{{ __('Phone') }}" value="" />
-                        <textarea
-                            class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
-                            placeholder="{{ __('Message') }}"></textarea>
+                <form action="{{ route('website.contact.send') }}" method="post">
+                    @csrf
+                    <div class="w-[330px]">
+                        <div class="flex flex-col space-y-4 pt-8 mb-8">
+                            <input type="text"
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
+                                placeholder="{{ __('Name') }}" name="name" value="" />
+                            <input type="text"
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white relative outline-0 undefined"
+                                placeholder="{{ __('Phone') }}" name="phone" value="" />
+                            <textarea
+                                class="border border-white py-4 px-6 rounded-[16px] w-full bg-background text-white placeholder:text-white h-[150px] outline-none undefined"
+                                placeholder="{{ __('Message') }}" name="message"></textarea>
+                        </div>
+                        <button class="w-330px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
+                            <div class="w-[330px]">{{ __('Send a message') }}</div>
+                        </button>
                     </div>
-                    <button class="w-330px] rounded-[12px] text-white h-[60px] button_primaryBtn__jr20_">
-                        <div class="w-[330px]">{{ __('Send a message') }}</div>
-                    </button>
-                </div>
+                </form>
                 <div class="h-[1px] bg-white w-full my-14"></div>
                 <div class="bg-gray p-10 rounded-[16px] h-[340px] w-[330px]">
                     <div class="mb-10">
@@ -687,4 +693,12 @@
             </div>
         </div>
     </section>
+    @if (session('success'))
+        <div class="popup-overlay">
+            <div class="popup-content">
+                <p>{{ session('success') }}</p>
+                <button onclick="this.parentElement.parentElement.style.display='none'">OK</button>
+            </div>
+        </div>
+    @endif
 @endsection

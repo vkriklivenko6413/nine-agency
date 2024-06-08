@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VideosController;
+use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomepageController as WebsiteHomepageController;
 use App\Http\Controllers\Website\NewsController as WebsiteNewsController;
 use App\Http\Controllers\Website\ProjectsController as WebsiteProjectsController;
@@ -18,6 +19,7 @@ Route::name('website.')->middleware(LoadWebsiteVariables::class)->group(function
     Route::get('/news', [WebsiteNewsController::class, 'index'])->name('news');
     Route::get('/news/{articleSlug}', [WebsiteNewsController::class, 'article'])->name('article');
     Route::get('/project/{projectSlug}', [WebsiteProjectsController::class, 'project'])->name('project');
+    Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
 });
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
