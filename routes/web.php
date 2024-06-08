@@ -8,18 +8,21 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomepageController as WebsiteHomepageController;
+use App\Http\Controllers\Website\LanguageController;
 use App\Http\Controllers\Website\NewsController as WebsiteNewsController;
 use App\Http\Controllers\Website\ProjectsController as WebsiteProjectsController;
 use App\Http\Middleware\LoadAdminVariables;
 use App\Http\Middleware\LoadWebsiteVariables;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
-Route::name('website.')->middleware(LoadWebsiteVariables::class)->group(function () {
+Route::name('website.')->middleware([LoadWebsiteVariables::class, SetLocale::class])->group(function () {
     Route::get('/', [WebsiteHomepageController::class, 'index'])->name('homepage');
     Route::get('/news', [WebsiteNewsController::class, 'index'])->name('news');
     Route::get('/news/{articleSlug}', [WebsiteNewsController::class, 'article'])->name('article');
     Route::get('/project/{projectSlug}', [WebsiteProjectsController::class, 'project'])->name('project');
     Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
+    Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 });
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');

@@ -11,6 +11,7 @@
     <link rel="preload" href="{{ asset('website/_next/static/css/7829407dc6bca8ce.css') }}" as="style" />
     <link rel="stylesheet" href="{{ asset('website/_next/static/css/7829407dc6bca8ce.css') }}" data-n-g="" />
     <link rel="stylesheet" href="{{ asset('website/popup.css') }}" data-n-g="" />
+    <link rel="stylesheet" href="{{ asset('website/custom.css') }}" data-n-g="" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <noscript data-n-css=""></noscript>
     <style data-href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap">
@@ -139,6 +140,23 @@
                 nextEl: '.swiper-b-button-next',
                 prevEl: '.swiper-b-button-prev',
             },
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            mobileMenuButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle('mobile-menu-visible');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.remove('mobile-menu-visible');
+                }
+            });
         });
     </script>
 </body>

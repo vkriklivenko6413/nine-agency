@@ -1,0 +1,52 @@
+.relative:hover .absolute {
+    display: block;
+}
+
+#dropdownMenu {
+    display: none;
+}
+
+#languageSwitcher:focus+#dropdownMenu,
+#languageSwitcher:hover+#dropdownMenu,
+#dropdownMenu:hover {
+    display: block;
+}
+
+#mobileMenu {
+    display: none;
+}
+
+.mobile-menu-visible {
+    display: flex !important;
+}
+
+.mobile-menu-lang {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 50px !important;
+}
+
+.mobile-menu-lang li {
+    margin: 0 10px;
+}
+
+.mobile-menu-lang a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 8px;
+    position: relative;
+}
+
+.mobile-menu-lang a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
