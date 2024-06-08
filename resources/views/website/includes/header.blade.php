@@ -1,6 +1,6 @@
 <header class="flex items-center justify-between py-6 bg-background z-50 m-container md:px-0 mx-10">
     <a href="{{ route('website.homepage') }}">
-        @if ($websiteVariables->website_logo)
+        @if ($websiteVariables->website_logo ?? '')
             <img src="{{ Storage::url($websiteVariables->website_logo) }}" alt="" style="max-height: 70px;">
         @else
             Logo

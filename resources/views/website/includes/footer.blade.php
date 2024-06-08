@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between pb-5 border-b border-gray mb-10 m-container">
             <div class="flex flex-col space-y-20">
                 <a href="{{ route('website.homepage') }}">
-                    @if ($websiteVariables->website_logo)
+                    @if ($websiteVariables->website_logo ?? '')
                         <img src="{{ Storage::url($websiteVariables->website_logo) }}" alt=""
                             style="max-height: 70px;">
                     @else
@@ -26,7 +26,8 @@
                     </a>
                 </nav>
                 <div class="flex items-center space-x-4">
-                    <a href="{{ $globalVariables->instagram_url ?? '' }}">
+                    @if ($globalVariables->instagram_url ?? '')
+                    <a href="{{ $globalVariables->instagram_url }}">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -41,7 +42,9 @@
                                 stroke="#FDFFFF" stroke-width="0.888889"></path>
                         </svg>
                     </a>
-                    <a href="{{ $globalVariables->facebook_url ?? '' }}">
+                    @endif
+                    @if ($globalVariables->facebook_url ?? '')
+                    <a href="{{ $globalVariables->facebook_url }}">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -51,7 +54,9 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{ $globalVariables->tiktok_url ?? '' }}">
+                    @endif
+                    @if ($globalVariables->tiktok_url ?? '')
+                    <a href="{{ $globalVariables->tiktok_url }}">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -60,7 +65,9 @@
                                 fill="#FDFFFF"></path>
                         </svg>
                     </a>
-                    <a href="{{ $globalVariables->youtube_url ?? '' }}">
+                    @endif
+                    @if ($globalVariables->youtube_url ?? '')
+                    <a href="{{ $globalVariables->youtube_url }}">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -69,6 +76,7 @@
                                 fill="#FDFFFF"></path>
                         </svg>
                     </a>
+                    @endif
                 </div>
             </div>
             {{-- <div class="w-full md:w-auto pt-16 pb-20">
@@ -131,7 +139,8 @@
                 </div>
             </div> --}}
             <div class="flex items-center space-x-4">
-                <a href="{{ $globalVariables->instagram_url ?? '' }}">
+                @if ($globalVariables->instagram_url ?? '')
+                <a href="{{ $globalVariables->instagram_url }}">
                     <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -146,7 +155,9 @@
                             stroke="#FDFFFF" stroke-width="0.888889"></path>
                     </svg>
                 </a>
-                <a href="{{ $globalVariables->facebook_url ?? '' }}">
+                @endif
+                @if ($globalVariables->facebook_url ?? '')
+                <a href="{{ $globalVariables->facebook_url }}">
                     <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -156,7 +167,9 @@
                         </path>
                     </svg>
                 </a>
-                <a href="{{ $globalVariables->tiktok_url ?? '' }}">
+                @endif
+                @if ($globalVariables->tiktok_url ?? '')
+                <a href="{{ $globalVariables->tiktok_url }}">
                     <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -165,7 +178,9 @@
                             fill="#FDFFFF"></path>
                     </svg>
                 </a>
-                <a href="{{ $globalVariables->youtube_url ?? '' }}">
+                @endif
+                @if ($globalVariables->youtube_url ?? '')
+                <a href="{{ $globalVariables->youtube_url }}">
                     <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="37" height="37" rx="18.5" stroke="#FDFFFF"></rect>
@@ -174,6 +189,7 @@
                             fill="#FDFFFF"></path>
                     </svg>
                 </a>
+                @endif
             </div>
         </div>
     </div>
