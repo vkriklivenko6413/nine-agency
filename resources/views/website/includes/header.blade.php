@@ -33,10 +33,12 @@
         </button>
         <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden">
             @foreach (config('app.languages') as $lang => $language)
-                <a href="{{ route('website.lang.switch', $lang) }}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    {{ $language }}
-                </a>
+                @if (app()->getLocale() != $lang)
+                    <a href="{{ route('website.lang.switch', $lang) }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        {{ $language }}
+                    </a>
+                @endif
             @endforeach
         </div>
     </div>

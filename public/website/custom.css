@@ -6,6 +6,15 @@
     display: none;
 }
 
+#dropdownMenu a {
+    color: black;
+}
+
+#dropdownMenu a:hover {
+    color: white;
+    background-color: rgb(44, 44, 44);
+}
+
 #languageSwitcher:focus+#dropdownMenu,
 #languageSwitcher:hover+#dropdownMenu,
 #dropdownMenu:hover {
