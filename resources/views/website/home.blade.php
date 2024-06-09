@@ -34,18 +34,10 @@
                 <div class="border border-white rounded-[16px] p-2 md:p-4 w-[328px] md:w-[946px] md:h-[157px] h-[60px]">
                     <div class="overflow-hidden w-[310px] md:w-[910px]">
                         <div class="flex HeroBlock_animateMarquee__2S0WO">
-                            <img src="{{ asset('website/companies/company1.png') }}" alt="Image 1"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
-                            <img src="{{ asset('website/companies/company7.png') }}" alt="Image 2"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
-                            <img src="{{ asset('website/companies/company5.png') }}" alt="Image 3"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
-                            <img src="{{ asset('website/companies/company9.png') }}" alt="Image 4"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
-                            <img src="{{ asset('website/companies/company6.png') }}" alt="Image 5"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
-                            <img src="{{ asset('website/companies/company8.png') }}" alt="Image 6"
-                                class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
+                            @foreach ($clients as $client)
+                                <img src="{{ Storage::url($client->logo) }}"
+                                    class="md:h-[120px] h-[44px] md:w-[264px] w-[150px] object-cover" />
+                            @endforeach
                         </div>
                     </div>
                 </div>

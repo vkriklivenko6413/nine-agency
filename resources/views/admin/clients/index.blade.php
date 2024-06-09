@@ -5,7 +5,7 @@
         <div class="container-lg">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h2 class="card-title mb-5">Videos</h2>
+                    <h2 class="card-title mb-5">Clients</h2>
 
                     @if (session('success'))
                         <div class="alert alert-success mt-3">
@@ -15,15 +15,15 @@
 
                     <h5>Add new</h5>
 
-                    <form action="{{ route('admin.videos.store') }}" method="post" class="mt-3"
+                    <form action="{{ route('admin.clients.store') }}" method="post" class="mt-3"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="videos" class="form-label">Videos</label>
+                                <label for="logos" class="form-label">Logos</label>
                                 <div class="input-group mb-3">
-                                    <input type="file" name="videos[]" id="videos" class="form-control"
-                                        accept="video/*" required multiple>
+                                    <input type="file" name="logos[]" id="logos" class="form-control"
+                                        accept="image/*" required multiple>
                                 </div>
                             </div>
                             <div class="col-md-1 mt-0">
@@ -34,21 +34,17 @@
 
                     <div class="col-md-12 mb-3 mt-3">
                         <label class="form-label">
-                            <h5>Existing Videos</h5>
+                            <h5>Existing Client Logos</h5>
                         </label>
                         <div class="row">
-                            @if ($videos->count())
-                                @foreach ($videos as $video)
-                                    <div class="col-md-4 mt-2 position-relative">
-                                        <div class="d-flex justify-content-center align-items-center"
-                                            style="height: 300px;">
-                                            <video width="100%" height="100%" controls>
-                                                <source src="{{ Storage::url($video->video) }}" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
+                            @if ($clients->count())
+                                @foreach ($clients as $client)
+                                    <div class="col-md-3 mt-2 position-relative">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="{{ Storage::url($client->logo) }}" alt=""
+                                                style="max-width: 100%;">
                                             <div class="position-absolute top-50 start-50 translate-middle">
-                                                <a href="{{ route('admin.videos.destroy', $video->id) }}"
-                                                    class="delete">
+                                                <a href="{{ route('admin.clients.destroy', $client->id) }}" class="delete">
                                                     <button type="button" class="btn btn-danger">Delete</button>
                                                 </a>
                                             </div>
@@ -56,7 +52,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <span>No video files added yet.</span>
+                                <span>No client logo files added yet.</span>
                             @endif
                         </div>
                     </div>
@@ -67,5 +63,5 @@
     </div>
 
     @include('admin.includes.delete-modal')
-    
+
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ClientsController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectsController;
@@ -36,6 +37,12 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::
     Route::name('homepage.')->prefix('homepage')->group(function () {
         Route::get('/', [HomepageController::class, 'index'])->name('index');
         Route::post('/', [HomepageController::class, 'update'])->name('update');
+    });
+
+    Route::name('clients.')->prefix('clients')->group(function () {
+        Route::get('/', [ClientsController::class, 'index'])->name('index');
+        Route::post('/', [ClientsController::class, 'store'])->name('store');
+        Route::get('/{client}/delete', [ClientsController::class, 'destroy'])->name('destroy');
     });
 
     Route::name('projects.')->prefix('projects')->group(function () {

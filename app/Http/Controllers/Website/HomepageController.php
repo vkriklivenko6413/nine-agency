@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\NewsArticle;
 use App\Models\Project;
 use App\Models\Variable;
@@ -21,8 +22,9 @@ class HomepageController extends Controller
         $videos = Video::latest()->get();
 
         $news = NewsArticle::latest()->limit(9)->get();
-        // return $news->chunk(3);
+        
+        $clients = Client::all();
 
-        return view('website.home', compact('homepageVariables', 'projects', 'videos', 'news'));
+        return view('website.home', compact('homepageVariables', 'clients', 'projects', 'videos', 'news'));
     }
 }
