@@ -108,6 +108,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="<?php echo action('\App\Http\Controllers\Admin\HomepageController@index') ?>">
+                Admin Panel >
+            </a>
             <a href="<?php echo action('\Barryvdh\TranslationManager\Controller@getIndex') ?>" class="navbar-brand">
                 Translation Manager
             </a>

@@ -40,6 +40,12 @@
                     <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                 </svg> Settings
             </a>
+
+            <a class="nav-link" href="/admin/translations">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-language"></use>
+                </svg> Static Translations
+            </a>
         </li>
     </ul>
 </div>
