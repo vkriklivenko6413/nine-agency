@@ -395,9 +395,9 @@
                     <img src="{{ Storage::url($homepageVariables->years_experience_img ?? '') }}" alt="experience" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->years_experience ?? '' }}
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->years_experience ?? '' }}+
                         </h2>
-                        <p class="typography_body__0hry6 undefined text-white">{{ __('years of experience') }}+
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('years of experience') }}
                         </p>
                     </div>
                 </div>
@@ -407,9 +407,9 @@
                     <img src="{{ Storage::url($homepageVariables->team_members_img ?? '') }}" alt="members" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->team_members ?? '' }}
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->team_members ?? '' }}+
                         </h2>
-                        <p class="typography_body__0hry6 undefined text-white">{{ __('team members') }}+</p>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('team members') }}</p>
                     </div>
                 </div>
                 <div class="relative group w-full">
@@ -419,8 +419,8 @@
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
                         <h2 class="typography_sub__jABiX mb-2 text-white">
-                            {{ $homepageVariables->satisfied_clients ?? '' }}</h2>
-                        <p class="typography_body__0hry6 undefined text-white">{{ __('satisfied clients') }}+</p>
+                            {{ $homepageVariables->satisfied_clients ?? '' }}+</h2>
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('satisfied clients') }}</p>
                     </div>
                 </div>
                 <div class="relative group w-full">
@@ -429,9 +429,9 @@
                     <img src="{{ Storage::url($homepageVariables->company_videos_img ?? '') }}" alt="videos" />
                     <div
                         class="absolute w-full justify-center flex flex-col items-start bottom-5 left-5 group-hover:opacity-0 transition duration-300">
-                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->company_videos ?? '' }}
+                        <h2 class="typography_sub__jABiX mb-2 text-white">{{ $homepageVariables->company_videos ?? '' }}+
                         </h2>
-                        <p class="typography_body__0hry6 undefined text-white">{{ __('company videos created') }}+
+                        <p class="typography_body__0hry6 undefined text-white">{{ __('company videos created') }}
                         </p>
                     </div>
                 </div>
