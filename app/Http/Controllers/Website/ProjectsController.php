@@ -12,6 +12,6 @@ class ProjectsController extends Controller
     {
         $project = Project::where('slug', $projectSlug)->firstOrFail();
 
-        return view('website.project', compact('project'));
+        return view('website-n.project', compact('project'));
     }
 }

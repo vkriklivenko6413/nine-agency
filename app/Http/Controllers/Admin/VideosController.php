@@ -18,27 +18,54 @@ class VideosController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'videos.*' => 'required|file|mimetypes:video/mp4,video/avi,video/mpeg|max:20480'
+        $request->validate([
+            'video' => 'required|url',
+            'image' => 'nullable|file|image|max:2048',
+        ]);
+ 
+        $videoEmbed = self::convertToEmbedLink($request->video);
+
+        if (!$videoEmbed) return redirect()->route('admin.videos.index')->withErrors(['video' => 'Could not parse provided URL!']);
+
+        $video = Video::create([
+            'video' => $videoEmbed,
         ]);
 
-        foreach ($request->file('videos') as $videoFile) {
-            $filePath = $videoFile->store('videos', 'public');
+        $video->addMedia($request->file('image'))->toMediaCollection('images');
 
-            $video = new Video();
-            $video->video = $filePath;
-            $video->save();
-        }
-
-        return redirect()->route('admin.videos.index')->with('success', 'Videos uploaded successfully.');
+        return redirect()->route('admin.videos.index')->with('success', 'Video added successfully.');
     }
 
     public function destroy(Video $video)
     {
-        Storage::disk('public')->delete($video->video);
+        if ($video->hasMedia('images')) {
+            $video->getFirstMedia('images')->delete();
+        }
 
         $video->delete();
 
         return redirect()->route('admin.videos.index')->with('success', 'Video deleted successfully.');
+    }
+
+    private static function convertToEmbedLink($url)
+    {
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            $parsedUrl = parse_url($url);
+
+            if (isset($parsedUrl['host']) && (strpos($parsedUrl['host'], 'youtube.com') !== false || strpos($parsedUrl['host'], 'youtu.be') !== false)) {
+                if (strpos($parsedUrl['host'], 'youtu.be') !== false) {
+                    $videoId = ltrim($parsedUrl['path'], '/');
+                } else {
+                    parse_str($parsedUrl['query'], $queryParams);
+                    $videoId = $queryParams['v'];
+                }
+
+                $embedLink = 'https://www.youtube.com/embed/' . htmlspecialchars($videoId);
+
+                return $embedLink;
+            }
+        }
+
+        return null;
     }
 }

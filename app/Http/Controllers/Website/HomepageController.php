@@ -25,6 +25,6 @@ class HomepageController extends Controller
         
         $clients = Client::all();
 
-        return view('website.home', compact('homepageVariables', 'clients', 'projects', 'videos', 'news'));
+        return view('website-n.home', compact('homepageVariables', 'clients', 'projects', 'videos', 'news'));
     }
 }

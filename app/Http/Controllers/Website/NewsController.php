@@ -12,13 +12,13 @@ class NewsController extends Controller
     {
         $news = NewsArticle::latest()->get();
 
-        return view('website.news', compact('news'));
+        return view('website-n.news', compact('news'));
     }
 
     public function article(string $articleSlug)
     {
         $article = NewsArticle::where('slug', $articleSlug)->firstOrFail();
 
-        return view('website.article', compact('article'));
+        return view('website-n.article', compact('article'));
     }
 }

@@ -13,17 +13,31 @@
                         </div>
                     @endif
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                - {{ $error }}<br>
+                            @endforeach
+                        </div>
+                    @endif
+
                     <h5>Add new</h5>
 
                     <form action="{{ route('admin.videos.store') }}" method="post" class="mt-3"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
-                                <label for="videos" class="form-label">Videos</label>
-                                <div class="input-group mb-3">
-                                    <input type="file" name="videos[]" id="videos" class="form-control"
-                                        accept="video/*" required multiple>
+                            <div class="col-md-6">
+                                <label for="video" class="form-label">Video Embed URL</label>
+                                <div class="input-group mb-2">
+                                    <input type="url" name="video" id="video" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="image" class="form-label">Cover Image</label>
+                                <div class="input-group mb-2">
+                                    <input type="file" name="image" id="image" class="form-control"
+                                        accept="images/*" required multiple>
                                 </div>
                             </div>
                             <div class="col-md-1 mt-0">
@@ -42,13 +56,9 @@
                                     <div class="col-md-4 mt-2 position-relative">
                                         <div class="d-flex justify-content-center align-items-center"
                                             style="height: 300px;">
-                                            <video width="100%" height="100%" controls>
-                                                <source src="{{ Storage::url($video->video) }}" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
+                                            <img src="{{ $video->getFirstMediaUrl('images') }}" alt="" style="width: 100%; height: 100%">
                                             <div class="position-absolute top-50 start-50 translate-middle">
-                                                <a href="{{ route('admin.videos.destroy', $video->id) }}"
-                                                    class="delete">
+                                                <a href="{{ route('admin.videos.destroy', $video->id) }}" class="delete">
                                                     <button type="button" class="btn btn-danger">Delete</button>
                                                 </a>
                                             </div>
@@ -67,5 +77,5 @@
     </div>
 
     @include('admin.includes.delete-modal')
-    
+
 @endsection

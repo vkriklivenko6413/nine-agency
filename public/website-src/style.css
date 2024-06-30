@@ -1,0 +1,290 @@
+
+
+.text-center {
+  text-align: center;
+ 
+}
+
+@media (max-width: 767.98px){
+  .tranding__text{
+
+    max-width: none !important;
+        }
+        .text-center {
+          text-align: left;
+         
+        }
+}
+
+
+
+
+#tranding .tranding-slider {
+  padding: 2rem 0;
+  position: relative;
+}
+
+
+.tranding-slide {
+width: 310px;
+height: 406px;
+
+  position: relative;
+}
+
+
+.tranding-slide .tranding-slide-img img {
+  width: 310px;
+  height: 406px;
+  border-radius: 2rem;
+  object-fit: cover;
+  @media (max-width: 768px){
+    width: 100%;
+}
+}
+
+
+
+
+
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none;
+}
+
+.tranding-slider-control {
+  position: relative;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width:767.98){
+  .tranding{
+      margin-bottom: 64px;
+
+  }
+.tranding__title{
+  text-align: left !important;
+
+}
+    
+}
+
+
+
+
+
+
+
+.mobile-seo .seo-page__container{
+display: flex;
+flex-direction: column;
+
+}
+.mobile-seo__wrapper{
+
+
+
+
+  display: flex;
+overflow-x: auto;
+gap: 20px;
+
+
+}
+
+@media (max-width:767.98){
+
+}
+.mobile-seo .seo-page__item {
+min-width: 80vw;
+
+}
+.mobile-seo .seo-page__item {
+ 
+}
+@media (max-width: 767.98px){
+  .grid__tile{
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+   
+  .seo-page__item{
+  }
+}
+@media (max-width: 768.98px){
+    .grid{
+      display: block !important;
+    }
+    .seo-page__text{
+      display: none;
+    }
+}
+
+.ai-page__items{
+overflow-y: auto;
+
+}
+.ai-page__items   .ai-page__item{
+  display: block !important;
+}
+@media (max-width: 600px){
+    .ai-page__item{
+      min-width: 100vw;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 767.98px){
+ 
+}
+body.dark2::before {
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  transition: background 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.tranding-slide-img {
+  z-index: 121;
+  position: relative;
+  transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.change .tranding-slide-img img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0); /* або використовуй потрібний масштаб */
+  width: 558px ;
+  height: 406px ;
+  z-index: 122;
+  border-radius: 12px;
+  transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+@media (max-width: 425px){
+    .change .tranding-slide-img img{
+      width: 408px ;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 306px ;
+    }
+}
+.change .tranding-slide-img img {
+
+  transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+.swiper-slide .tranding-slide-img{
+  height: 100%;
+  }
+
+.download-svg{
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%,-50%) !important; 
+width:48px !important;
+ height:48px !important;
+}
+
+.download-svg{
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.active-slide  .tranding-slide-img .download-svg{
+opacity: 0;
+overflow: hidden;
+}
+.change .tranding-slide-img .download-svg{
+opacity: 1;
+visibility: visible;
+}
+.swiper{
+}
+
+
+
+.swiper{
+  z-index: 400;
+}
+
+.swiper-slide-active::after{
+  display: none;
+}
+
+.test::after{
+  content: '';
+  position: absolute;width: 100%;height: 100%;top: 0;left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  }
+/* .download-svg{
+  display: none;
+
+} */
+@media (max-width: 767.97px){
+    .tranding-slide-img::after{
+    }
+  
+}
+.active-slide{
+
+}
+
+.tranding-slide{
+  position: relative;
+
+}
+     .video-slide{
+  
+      display: none;
+
+position: absolute;
+top: 0;left: -40%;
+z-index: 1000;
+     }
+
+     .change  .video-slide{
+      display: block;
+
+     }
+
+.tranding-slide-img{
+  transition: all 0.5s;
+}
+
+.change .tranding-slide-img{
+  overflow: hidden;
+  opacity: 0;
+display: none;
+}
+
+@media (max-width: 767px){
+    .video-slide{
+      width: 100%;
+      left: 0;
+    }
+}
