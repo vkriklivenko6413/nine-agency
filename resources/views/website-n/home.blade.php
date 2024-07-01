@@ -2,7 +2,7 @@
 
 @section('main')
     <main class="page">
-        <section class="page__main-section main-section">
+        <section class="page__main-section main-section" id="get_started">
             <div class="main-section__container">
                 <div class="main-section__info">
                     <div class="main-section__svg">
@@ -67,16 +67,18 @@
                 <div class="main-section__company company-main company-main-mobile">
                     <div class="company-main__items">
                         <div class="company-main__item">
-                            <img src="./website-src/01(1).svg" alt="" />
+                            <img src="/website-src/img/01(1).svg" alt="" />
                         </div>
                         <div class="company-main__item">
-                            <img src="./website-src/02(1).svg" alt="" />
+                            <img src="/website-src/img/02(1).svg" alt="" />
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="page__with-us with-us">
+
+
+        <div class="page__with-us with-us" id="projects">
             <div class="with-us__container">
                 <h3 class="with-us__title title">
                     {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}
@@ -98,7 +100,7 @@
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
                                         </div>
-                                        <a href="{{ route('website.project', $project->id) }}"
+                                        <a href="{{ route('website.project', $project->slug) }}"
                                             class="company-main__more">{{ __('See more') }}</a>
                                     </div>
                                 </div>
@@ -114,7 +116,7 @@
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
                                         </div>
-                                        <a href="{{ route('website.project', $project->id) }}"
+                                        <a href="{{ route('website.project', $project->slug) }}"
                                             class="company-main__more">{{ __('See more') }}</a>
                                     </div>
                                 </div>
@@ -128,7 +130,7 @@
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
                                         </div>
-                                        <a href="{{ route('website.project', $project->id) }}"
+                                        <a href="{{ route('website.project', $project->slug) }}"
                                             class="company-main__more">{{ __('See more') }}</a>
                                     </div>
                                 </div>
@@ -154,7 +156,7 @@
                 </div>
                 <div class="seo-page__item item-seo item-seo--gray grid__tile">
                     <div class="item-seo__icon">
-                        <img src="./website-src/01(2).svg" alt="" />
+                        <img src="/website-src/img/01(2).svg" alt="" />
                     </div>
                     <div class="item-seo__title">
                         {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}
@@ -165,7 +167,7 @@
                 </div>
                 <div class="seo-page__item item-seo item-seo--gray grid__tile">
                     <div class="item-seo__icon">
-                        <img src="./website-src/02(2).svg" alt="" />
+                        <img src="/website-src/img/02(2).svg" alt="" />
                     </div>
                     <div class="item-seo__title">
                         {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}
@@ -176,7 +178,7 @@
                 </div>
                 <div class="seo-page__item item-seo grid__tile">
                     <div class="item-seo__icon">
-                        <img src="./website-src/03(1).svg" alt="" />
+                        <img src="/website-src/img/03(1).svg" alt="" />
                     </div>
                     <div class="item-seo__title">
                         {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}
@@ -187,7 +189,7 @@
                 </div>
                 <div class="seo-page__item item-seo item-seo--gray grid__tile">
                     <div class="item-seo__icon">
-                        <img src="./website-src/04(1).svg" alt="" />
+                        <img src="/website-src/img/04(1).svg" alt="" />
                     </div>
                     <div class="item-seo__title">
                         {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}
@@ -198,7 +200,7 @@
                 </div>
                 <div class="seo-page__item item-seo grid__tile">
                     <div class="item-seo__icon">
-                        <img src="./website-src/05(1).svg" alt="" />
+                        <img src="/website-src/img/05(1).svg" alt="" />
                     </div>
                     <div class="item-seo__title">
                         {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}
@@ -223,7 +225,7 @@
                 <div class="mobile-seo__wrapper">
                     <div class="seo-page__item item-seo item-seo--gray grid__tile">
                         <div class="item-seo__icon">
-                            <img src="./website-src/01(2).svg" alt="" />
+                            <img src="/website-src/img/01(2).svg" alt="" />
                         </div>
                         <div class="item-seo__title">
                             {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}
@@ -234,7 +236,7 @@
                     </div>
                     <div class="seo-page__item item-seo item-seo--gray grid__tile">
                         <div class="item-seo__icon">
-                            <img src="./website-src/02(2).svg" alt="" />
+                            <img src="/website-src/img/02(2).svg" alt="" />
                         </div>
                         <div class="item-seo__title">
                             {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}
@@ -245,7 +247,7 @@
                     </div>
                     <div class="seo-page__item item-seo grid__tile">
                         <div class="item-seo__icon">
-                            <img src="./website-src/03(1).svg" alt="" />
+                            <img src="/website-src/img/03(1).svg" alt="" />
                         </div>
                         <div class="item-seo__title">
                             {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}
@@ -256,7 +258,7 @@
                     </div>
                     <div class="seo-page__item item-seo item-seo--gray grid__tile">
                         <div class="item-seo__icon">
-                            <img src="./website-src/04(1).svg" alt="" />
+                            <img src="/website-src/img/04(1).svg" alt="" />
                         </div>
                         <div class="item-seo__title">
                             {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}
@@ -267,7 +269,7 @@
                     </div>
                     <div class="seo-page__item item-seo grid__tile">
                         <div class="item-seo__icon">
-                            <img src="./website-src/05(1).svg" alt="" />
+                            <img src="/website-src/img/05(1).svg" alt="" />
                         </div>
                         <div class="item-seo__title">
                             {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}
@@ -363,7 +365,7 @@
                                 role="group">
                                 <div class="tranding-slide-img">
                                     <img src="{{ $video->getFirstMediaUrl('images') }}" />
-                                    <img src="{{ asset('website-src/download.svg') }}" class="download-svg"
+                                    <img src="{{ asset('website-src/img/download.svg') }}" class="download-svg"
                                         style="z-index: 5000" />
                                 </div>
                                 <iframe class="slide__video video-slide" width="558" height="406"
@@ -379,11 +381,11 @@
                     <div class="swiper__buttons">
                         <button type="button" class="swiper-button-prev" tabindex="0" aria-label="Previous slide"
                             aria-controls="swiper-wrapper-cbf303a6829da577">
-                            <img src="{{ asset('website-src/arrow.svg') }}" alt="" />
+                            <img src="{{ asset('website-src/img/arrow.svg') }}" alt="" />
                         </button>
                         <button type="button" class="swiper-button-next" tabindex="0" aria-label="Next slide"
                             aria-controls="swiper-wrapper-cbf303a6829da577">
-                            <img src="{{ asset('website-src/arrow.svg') }}" alt="" />
+                            <img src="{{ asset('website-src/img/arrow.svg') }}" alt="" />
                         </button>
                     </div>
                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
@@ -454,7 +456,7 @@
         </section>
 
 
-        <section class="page__contact conatact-page">
+        <section class="page__contact conatact-page" id="contact">
             <div class="con__container">
                 <div class="conatact-page__info">
                     <div class="conatact-page__title title">

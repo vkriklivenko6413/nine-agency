@@ -6,9 +6,9 @@
         <title>@yield('title')</title>
         <meta name="format-detection" content="telephone=no" />
         <!-- <style>body{opacity: 0;}</style> -->
-        <link rel="stylesheet" href="./website-src/style.min.css" />
-        <link rel="stylesheet" href="./website-src/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="./website-src/style.css" />
+        <link rel="stylesheet" href="/website-src/css/style.min.css" />
+        <link rel="stylesheet" href="/website-src/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="/website-src/css/style.css" />
         <link
             rel="shortcut icon"
             href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/favicon.ico"
@@ -29,8 +29,8 @@
 
         </div>
 
-        <script src="./website-src/swiper-bundle.min.js"></script>
-        <script src="./website-src/script.js"></script>
-        <script src="./website-src/app.min.js"></script>
+        <script src="/website-src/js/swiper-bundle.min.js"></script>
+        <script src="/website-src/js/script.js"></script>
+        <script src="/website-src/js/app.min.js"></script>
     </body>
 </html>

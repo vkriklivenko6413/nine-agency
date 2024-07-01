@@ -1,41 +1,45 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__body">
-            <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home" class="footer__logo"><img
-                    src="./website-src/logo.svg" alt="home.html" /></a>
+            <a href="{{ route('website.homepage') }}" class="footer__logo">
+                @if ($websiteVariables->website_logo ?? '')
+                    <img src="{{ Storage::url($websiteVariables->website_logo) }}" alt="" />
+                @else
+                    Logo
+                @endif
+            </a>
             <div class="footer__items">
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                    class="footer__item">About us</a>
-
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                    class="footer__item">Our cases</a>
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                    class="footer__item">News</a>
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                    class="footer__item">Contact</a>
+                <a href="{{ route('website.homepage') . '#get_started' }}" class="footer__item">{{ __('About us') }}</a>
+                <a href="{{ route('website.homepage') . '#projects' }}" class="footer__item">{{ __('Our cases') }}</a>
+                <a href="{{ route('website.news') }}" class="footer__item">{{ __('News') }}</a>
+                <a href="{{ route('website.homepage') . '#contact' }}" class="footer__item">{{ __('Contact') }}</a>
             </div>
             <div class="footer__companies companies-footer" data-da=".footer__container, 767.98,last">
                 <div class="companies-footer__items">
-                    <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                        class="companies-footer__item">
-                        <img src="./website-src/01(7).svg" alt="" />
-                    </a>
-                    <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                        class="companies-footer__item">
-                        <img src="./website-src/02(7).svg" alt="" />
-                    </a>
-                    <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                        class="companies-footer__item">
-                        <img src="./website-src/03(6).svg" alt="" />
-                    </a>
-                    <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
-                        class="companies-footer__item">
-                        <img src="./website-src/04(5).svg" alt="" />
-                    </a>
+                    @if ($websiteVariables->instagram_url ?? '')
+                        <a href="{{ $websiteVariables->instagram_url }}" class="companies-footer__item">
+                            <img src="/website-src/img/01(7).svg" alt="" />
+                        </a>
+                    @endif
+                    @if ($websiteVariables->facebook_url ?? '')
+                        <a href="{{ $websiteVariables->facebook_url }}" class="companies-footer__item">
+                            <img src="/website-src/img/02(7).svg" alt="" />
+                        </a>
+                    @endif
+                    @if ($websiteVariables->tiktok_url ?? '')
+                        <a href="{{ $websiteVariables->tiktok_url }}" class="companies-footer__item">
+                            <img src="/website-src/img/03(6).svg" alt="" />
+                        </a>
+                    @endif
+                    @if ($websiteVariables->youtube_url ?? '')
+                        <a href="{{ $websiteVariables->youtube_url }}" class="companies-footer__item">
+                            <img src="/website-src/img/04(5).svg" alt="" />
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="footer__contact contact-footer">
+        {{-- <div class="footer__contact contact-footer">
             <div class="contact-footer__title">
                 Get the freshest news from us
             </div>
@@ -48,23 +52,24 @@
                     </button>
                 </div>
             </form>
-        </div>
+        </div> --}}
     </div>
     <div class="footer__sub sub-footer">
         <div class="sub-footer__container">
             <div class="sub-footer__items">
                 <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
-                    class="sub-footer__item">Terms &amp; Conditions</a>
+                    class="sub-footer__item">{{ __('Terms & Conditions') }}
+                </a>
                 <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
-                    class="sub-footer__item">Privacy Policy
+                    class="sub-footer__item">{{ __('Privacy Policy') }}
                 </a>
                 <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
                     class="sub-footer__item">
-                    Accessibility
+                    {{ __('Accessibility') }}
                 </a>
                 <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
                     class="sub-footer__item">
-                    Legal
+                    {{ __('Legal') }}
                 </a>
             </div>
         </div>
