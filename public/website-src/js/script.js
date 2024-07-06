@@ -99,6 +99,6 @@ var TrandingSlider = new Swiper('.tranding-slider', {
         slide.classList.remove('test');
       });
 
-      console.log(mainChange); // Перевіряємо значення в консолі
+      // console.log(mainChange); // Перевіряємо значення в консолі
     }
   });

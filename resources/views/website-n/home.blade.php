@@ -95,11 +95,11 @@
                         @if ($index % 3 == 0)
                             <div class="with-us__item">
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}"
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}"
                                         class="small" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
-                                            {{ $project->name }}
+                                            {{ $project->title }}
                                         </div>
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
@@ -112,10 +112,10 @@
                         @elseif($index % 3 == 1)
                             <div class="with-us__item two">
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}" />
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
-                                            {{ $project->name }}
+                                            {{ $project->title }}
                                         </div>
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
@@ -126,10 +126,10 @@
                                 </div>
                             @else
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->name }}" />
+                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
-                                            {{ $project->name }}
+                                            {{ $project->title }}
                                         </div>
                                         <div class="company-main__text">
                                             {{ substr($project->description, 0, 50) }}...
@@ -438,7 +438,7 @@
                                         {{ $article->created_at->format('d M Y') }}
                                     </div>
                                     <div class="stay-page__text stat-pc">
-                                        {{ $article->title }}
+                                        {{ substr($article->description, 0, 200) }}...
                                     </div>
                                     <div class="stay-page__text stay-mb">
                                         {{ substr($article->description, 0, 50) }}...
@@ -518,4 +518,14 @@
         </section>
 
     </main>
+
+    @if (session('success'))
+        <div class="popup-overlay">
+            <div class="popup-content">
+                <p>{{ session('success') }}</p>
+                <button onclick="this.parentElement.parentElement.style.display='none'">OK</button>
+            </div>
+        </div>
+    @endif
+
 @endsection

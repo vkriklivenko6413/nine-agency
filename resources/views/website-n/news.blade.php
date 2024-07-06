@@ -21,7 +21,7 @@
                                         {{ $article->created_at->format('d M Y') }}
                                     </div>
                                     <div class="stay-page__text stat-pc">
-                                        {{ $article->title }}
+                                        {{ substr($article->description, 0, 200) }}...
                                     </div>
                                     <div class="stay-page__text stay-mb">
                                         {{ substr($article->description, 0, 50) }}...
