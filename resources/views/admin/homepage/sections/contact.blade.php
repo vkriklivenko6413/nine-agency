@@ -1,4 +1,4 @@
-<h5 class="mb-3">AI Chatbots section</h5>
+<h5 class="mb-3">Contact Us section</h5>
 
 <nav>
     <div class="nav nav-tabs" id="nav-tab-7" role="tablist">
