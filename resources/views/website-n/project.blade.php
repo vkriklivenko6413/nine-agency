@@ -1,5 +1,7 @@
 @extends('website-n.layouts.app')
 
+@section('title', $project->title)
+
 @section('main')
     <main class="page">
         <section class="page__case case-page">

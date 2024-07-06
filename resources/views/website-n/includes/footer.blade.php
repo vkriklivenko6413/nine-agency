@@ -3,7 +3,7 @@
         <div class="footer__body">
             <a href="{{ route('website.homepage') }}" class="footer__logo">
                 @if ($websiteVariables->website_logo ?? '')
-                    <img src="{{ Storage::url($websiteVariables->website_logo) }}" alt="" />
+                    <img src="{{ Storage::url($websiteVariables->website_logo ?? '') }}" alt="" />
                 @else
                     Logo
                 @endif
@@ -43,7 +43,7 @@
             <div class="contact-footer__title">
                 Get the freshest news from us
             </div>
-            <form action="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home" method="">
+            <form action="" method="">
                 <div class="contact-footer__item">
                     <input data-required="" type="text" name="form[email]" placeholder="Your email address…"
                         class="input" />
@@ -57,17 +57,17 @@
     <div class="footer__sub sub-footer">
         <div class="sub-footer__container">
             <div class="sub-footer__items">
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
+                <a href=""
                     class="sub-footer__item">{{ __('Terms & Conditions') }}
                 </a>
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
+                <a href=""
                     class="sub-footer__item">{{ __('Privacy Policy') }}
                 </a>
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
+                <a href=""
                     class="sub-footer__item">
                     {{ __('Accessibility') }}
                 </a>
-                <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home#"
+                <a href=""
                     class="sub-footer__item">
                     {{ __('Legal') }}
                 </a>

@@ -1,5 +1,7 @@
 @extends('website-n.layouts.app')
 
+@section('title', __('News'))
+
 @section('main')
     <main class="page">
         <section class="page__stay stay-page stay-main">

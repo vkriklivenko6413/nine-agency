@@ -25,6 +25,15 @@
                 </div>
             </div>
             <div class="col-md-12">
+                <label for="intro_features_{{ $key }}" class="form-label">Intro Features [divide by "," symbol]
+                    ({{ $label }})</label>
+                <div class="input-group mb-3">
+                    <input type="text" name="intro_features_{{ $key }}"
+                        id="intro_features_{{ $key }}" class="form-control"
+                        value="{{ old('intro_features_' . $key, $variables->{'intro_features_' . $key} ?? '') }}">
+                </div>
+            </div>
+            <div class="col-md-12">
                 <label for="intro_text_{{ $key }}" class="form-label">Intro Text
                     ({{ $label }})</label>
                 <div class="input-group mb-3">

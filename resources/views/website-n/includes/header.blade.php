@@ -31,10 +31,31 @@
                             class="menu__link">{{ __('Contact') }}</a>
                     </li>
                 </ul>
+
+                <div class="header__lang-mob">
+                    @foreach (config('app.languages') as $lang => $language)
+                        <a href="{{ route('website.lang.switch', $lang) }}"
+                            class="lang__item2 {{ app()->getLocale() == $lang ? 'active' : '' }}">{{ strtoupper($language) }}</a>
+                    @endforeach
+                </div>
             </nav>
         </div>
 
         <a href="{{ route('website.homepage') . '#get_started' }}"
             class="header__button button button--rgba">{{ __('Get Started') }}</a>
+
+        <div class="header__lang">
+            <div class="hover">
+                <a href="#" class="lang__item active">{{ strtoupper(app()->getLocale()) }}</a>
+                <div class="lang__body">
+                    @foreach (config('app.languages') as $lang => $language)
+                        @if (app()->getLocale() != $lang)
+                            <a href="{{ route('website.lang.switch', $lang) }}" class="lan"
+                                style="display: block">{{ $language }}</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 </div>

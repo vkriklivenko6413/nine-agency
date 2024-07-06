@@ -1,8 +1,10 @@
 @extends('website-n.layouts.app-home')
 
+@section('title', __('Home'))
+
 @section('main')
     <main class="page">
-        <section class="page__main-section main-section" id="get_started">
+        <section class="page__main-section main-section" id="get_started" style="margin-bottom: 0 !important">
             <div class="main-section__container">
                 <div class="main-section__info">
                     <div class="main-section__svg">
@@ -29,12 +31,16 @@
                             {{ $homepageVariables->{'intro_title_' . app()->getLocale()} ?? '' }}
                         </div>
 
+                        @php
+                            $locale = app()->getLocale();
+                            $introFeatures = $homepageVariables->{'intro_features_' . $locale} ?? '';
+                            $features = explode(',', $introFeatures);
+                        @endphp
+
                         <div class="text-animation">
-                            <div class="item1">Social Media</div>
-                            <div class="item1">Marketing</div>
-                            <div class="item1">SEO</div>
-                            <div class="item1">Video Production</div>
-                            <div class="item1">AI</div>
+                            @foreach ($features as $feature)
+                                <div class="item1">{{ $feature }}</div>
+                            @endforeach
                         </div>
                     </h1>
                     <div class="main-section__text">
@@ -66,19 +72,17 @@
                 </div>
                 <div class="main-section__company company-main company-main-mobile">
                     <div class="company-main__items">
-                        <div class="company-main__item">
-                            <img src="/website-src/img/01(1).svg" alt="" />
-                        </div>
-                        <div class="company-main__item">
-                            <img src="/website-src/img/02(1).svg" alt="" />
-                        </div>
+                        @foreach ($clients as $client)
+                            <div class="company-main__item">
+                                <img src="{{ Storage::url($client->logo) }}" alt="" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <div class="page__with-us with-us" id="projects">
+        <div id="projects" class="page__with-us with-us" style="padding-top: 10rem">
             <div class="with-us__container">
                 <h3 class="with-us__title title">
                     {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}
@@ -139,7 +143,7 @@
                     @endforeach
                 </div>
 
-                {{-- <a href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/home"
+                {{-- <a href=""
                     class="with-us__more">See all projects</a> --}}
             </div>
         </div>
@@ -417,7 +421,7 @@
             </div>
         </section>
 
-        <section class="page__stay stay-page">
+        <section class="page__stay stay-page" style="margin-bottom: 0 !important">
             <div class="stay-page__container">
                 <div class="stay-page__title title">
                     {{ $homepageVariables->{'news_section_title_' . app()->getLocale()} ?? '' }}
@@ -455,8 +459,7 @@
             </div>
         </section>
 
-
-        <section class="page__contact conatact-page" id="contact">
+        <section class="page__contact conatact-page" id="contact" style="padding-top: 10rem">
             <div class="con__container">
                 <div class="conatact-page__info">
                     <div class="conatact-page__title title">
@@ -500,8 +503,8 @@
                 <div class="conatact-page__right right-contact">
                     @csrf
                     <form action="{{ route('website.contact.send') }}" class="right-contact__form">
-                        <input data-required="" autocomplete="off" type="text" name="name" placeholder="{{ __('Name') }}"
-                            class="right-contact__input input" />
+                        <input data-required="" autocomplete="off" type="text" name="name"
+                            placeholder="{{ __('Name') }}" class="right-contact__input input" />
                         <input data-required="" autocomplete="off" type="number" name="phone"
                             placeholder="{{ __('Phone') }}" class="right-contact__input input" />
                         <textarea data-required="" name="message" id="" cols="20" rows="9"
@@ -513,6 +516,6 @@
                 </div>
             </div>
         </section>
-        
+
     </main>
 @endsection

@@ -1,6 +1,6 @@
-@extends('website.layouts.app')
+@extends('website-n.layouts.app')
 
-@section('content')
+@section('main')
     <div
         style="
                 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
@@ -15,8 +15,6 @@
         <div style="line-height: 48px">
             <style>
                 body {
-                    color: #000;
-                    background: #fff;
                     margin: 0;
                 }
 

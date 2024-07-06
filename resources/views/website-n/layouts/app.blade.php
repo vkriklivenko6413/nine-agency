@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<!-- saved from url=(0076)https://6676ba45ff107b7cb93e50ce-%2Dsparkly-licorice-24b8a0.netlify.app/case -->
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Name od case 4</title>
+        <title>{{ config('app.name') }} - @yield('title')</title>
         <meta name="format-detection" content="telephone=no" />
         <!-- <style>body{opacity: 0;}</style> -->
         <link rel="stylesheet" href="/website-src/css/style.min.css" />
         <link
             rel="shortcut icon"
-            href="https://6676ba45ff107b7cb93e50ce--sparkly-licorice-24b8a0.netlify.app/favicon.ico"
+            href="{{ Storage::url($websiteVariables->website_logo ?? '') }}"
         />
         <!-- <meta name="robots" content="noindex, nofollow"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
