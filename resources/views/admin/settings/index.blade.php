@@ -28,7 +28,7 @@
 
                             <div class="col-md-6 mb-3">
                                 @if ($settings->website_logo ?? '')
-                                    <img src="{{ Storage::url($settings->website_logo ?? '') }}" alt=""
+                                    <img style="background-color: gray" src="{{ Storage::url($settings->website_logo ?? '') }}" alt=""
                                         style="max-height:100px;">
                                 @else
                                     <span>No website logo yet.</span>
