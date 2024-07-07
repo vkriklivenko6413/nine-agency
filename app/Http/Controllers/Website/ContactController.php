@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Variable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,10 +23,14 @@ class ContactController extends Controller
             'messageText' => $request->input('message'),
         ];
 
-        Mail::send('emails.contact', $data, function ($message) use ($data) {
-            $message->to('info@9a.md')
-                ->subject('Contact Form Message');
-        });
+        $targetEmail = Variable::firstWhere('name', 'contact_email')?->value;
+
+        if ($targetEmail) {
+            Mail::send('emails.contact', $data, function ($message) use ($data, $targetEmail) {
+                $message->to($targetEmail)
+                    ->subject('Contact Form Message');
+            });
+        }
 
         return redirect()->back()->with('success', 'Message sent successfully!');
     }
