@@ -502,7 +502,7 @@
                 </div>
                 <div class="conatact-page__right right-contact">
                     @csrf
-                    <form action="{{ route('website.contact.send') }}" class="right-contact__form">
+                    <form method="post" action="{{ route('website.contact.send') }}" class="right-contact__form">
                         <input data-required="" autocomplete="off" type="text" name="name"
                             placeholder="{{ __('Name') }}" class="right-contact__input input" />
                         <input data-required="" autocomplete="off" type="number" name="phone"
