@@ -36,6 +36,6 @@
     @endforeach
 </div>
 
-<a href="" class="mt-2 mb-4">
+<a href="{{ route('admin.videos.index') }}" class="mt-2 mb-4">
     <button type="button" class="btn btn-secondary">Edit Videos List</button>
 </a>
