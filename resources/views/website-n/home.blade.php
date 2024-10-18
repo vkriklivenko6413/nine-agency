@@ -397,29 +397,29 @@
             </div>
         </section>
 
-        <section class="page__ai ai-page">
-            <div class="ai-page__container">
-                <div class="ai-page__info">
-                    <div class="ai-page__title title">
-                        {{ $homepageVariables->{'ai_section_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="ai-page__text text">
-                        {{ $homepageVariables->{'ai_section_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
-                <div class="ai-page__items">
-                    <div class="ai-page__item">
-                        <img src="{{ Storage::url($homepageVariables->ai_section_img_1 ?? '') }}" alt="" />
-                    </div>
-                    <div class="ai-page__item">
-                        <img src="{{ Storage::url($homepageVariables->ai_section_img_2 ?? '') }}" alt="" />
-                    </div>
-                    <div class="ai-page__item">
-                        <img src="{{ Storage::url($homepageVariables->ai_section_img_3 ?? '') }}" alt="" />
-                    </div>
-                </div>
-            </div>
-        </section>
+{{--        <section class="page__ai ai-page">--}}
+{{--            <div class="ai-page__container">--}}
+{{--                <div class="ai-page__info">--}}
+{{--                    <div class="ai-page__title title">--}}
+{{--                        {{ $homepageVariables->{'ai_section_title_' . app()->getLocale()} ?? '' }}--}}
+{{--                    </div>--}}
+{{--                    <div class="ai-page__text text">--}}
+{{--                        {{ $homepageVariables->{'ai_section_text_' . app()->getLocale()} ?? '' }}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="ai-page__items">--}}
+{{--                    <div class="ai-page__item">--}}
+{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_1 ?? '') }}" alt="" />--}}
+{{--                    </div>--}}
+{{--                    <div class="ai-page__item">--}}
+{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_2 ?? '') }}" alt="" />--}}
+{{--                    </div>--}}
+{{--                    <div class="ai-page__item">--}}
+{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_3 ?? '') }}" alt="" />--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
         <section class="page__stay stay-page" style="margin-bottom: 0 !important">
             <div class="stay-page__container">

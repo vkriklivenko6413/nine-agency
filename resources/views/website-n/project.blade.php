@@ -7,8 +7,8 @@
         <section class="page__case case-page">
             <div class="case-page__container">
                 <div class="case-page__info">
-                    <div class="case-page__title">{{ $project->title }}</div>
-                    <div class="case-page__text">
+                    <div class="case-page__title text-center">{{ $project->title }}</div>
+                    <div class="case-page__text text-center">
                         {{ $project->description }}
                     </div>
                 </div>
