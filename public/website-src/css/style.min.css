@@ -1300,6 +1300,7 @@ textarea.input {
     }
     .mobile-seo .seo-page__title {
         font-size: 1.625rem;
+        text-align: center;
     }
     .mobile-seo .seo-page__title:not(:last-child) {
         margin-bottom: 4rem;
@@ -1771,7 +1772,7 @@ textarea.input {
 }
 @media (max-width: 47.99875em) {
     .conatact-page__title {
-        text-align: left;
+        font-size: 36px;
     }
 }
 .conatact-page__text {
@@ -1784,8 +1785,9 @@ textarea.input {
 }
 @media (max-width: 47.99875em) {
     .conatact-page__text {
-        text-align: left;
         max-width: none;
+        padding-top: 15px;
+        font-size: 18px;
     }
 }
 @media (max-width: 47.99875em) {
@@ -2305,12 +2307,12 @@ font-size: 96px !important;
 }
 @media (max-width: 420px){
 .main-section__title{
-  font-size: 52px !important;
+  font-size: 36px !important;
 }
 }
 @media (max-width: 394px){
 .main-section__title{
-  font-size: 41px !important;
+  font-size: 32px !important;
 }
 }
 
@@ -2329,11 +2331,7 @@ height: 115px;
           height: 74px;
       }
     }
-    @media (max-width: 525px){
-      .text-animation{
-          height: 62px;
-      }
-    }
+
     @media (max-width: 395px){
       .text-animation{
           height: 50px;
@@ -2450,9 +2448,42 @@ font-size: 96px !important;
 }
 }
 @media (max-width: 525px){
-.main-section__title{
-  font-size: 52px !important;
-}
+    .main-section__title{
+      font-size: 52px !important;
+    }
+
+    .text-animation {
+        font-size: 36px !important;
+    }
+
+    .main-section__text {
+        font-size: 18px;
+    }
+
+    .with-us__title {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .with-us__text {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .tranding__title {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .tranding__text {
+        text-align: center !important;
+        font-size: 18px !important;
+    }
+
+    .stay-page__title {
+        font-size: 36px;
+        text-align: center;
+    }
 }
 @media (max-width: 395px){
 .main-section__title{
