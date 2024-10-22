@@ -43,6 +43,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 button,
 input,
 textarea {
@@ -84,6 +85,11 @@ h6 {
 body {
     background-color: #1f1f1f;
 }
+
+.body-ru {
+    font-family: Axiforma;
+}
+
 .lock body {
     overflow: hidden;
     touch-action: none;
@@ -973,7 +979,6 @@ textarea.input {
     }
 }
 .main-section__text {
-    font-family: Axiforma;
     font-size: 24px;
     padding-top: 1.5rem;
     color: rgba(255, 255, 255, 1);
@@ -1145,10 +1150,6 @@ textarea.input {
     }
 }
 
-.with-us__container {
-    font-family: Axiforma;
-}
-
 .with-us__title {
     max-width: 45rem;
     margin: 0 auto;
@@ -1222,15 +1223,24 @@ textarea.input {
     width: 279px;
 }
 .item-seo {
-    padding: 1.5rem;
+    padding: 0rem;
+    border-radius: 30px !important;
+    position: relative;
 }
 .item-seo--gray {
     border-radius: 12px;
     background: #404040;
 }
-.item-seo__icon:not(:last-child) {
-    margin-bottom: 5.25rem;
+
+.item-seo__image  {
+    padding: 0;
 }
+
+.item-seo__image img {
+    width: 100%;
+    border-radius: 30px !important;
+}
+
 .item-seo__title {
     font-weight: 500;
     font-size: 24px;
@@ -1294,7 +1304,7 @@ textarea.input {
     .mobile-seo .seo-page__title:not(:last-child) {
         margin-bottom: 4rem;
     }
-    .mobile-seo .item-seo__icon {
+    .mobile-seo .item-seo__image {
         margin-bottom: 3.375rem;
     }
     .mobile-seo .seo-page__item {
@@ -1938,10 +1948,37 @@ textarea.input {
         -webkit-transform: translateY(0);
         transform: translateY(0);
     }
+
+    .item-seo:hover .seo-item__info {
+        overflow: visible;
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
 }
 .with-us__wrapper {
     position: relative;
 }
+
+.seo-item__info {
+    transition: all 0.5s;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    opacity: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    -webkit-transform: translateY(40%);
+    transform: translateY(40%);
+}
+.seo-item__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+}
+
 .company-main__info {
     transition: all 0.5s;
     position: absolute;
@@ -2070,7 +2107,6 @@ textarea.input {
 }
 
 .tranding__container{
-    font-family: Axiforma;
     max-width: 1110px;
 }
 .tranding-slide-img{
@@ -2120,30 +2156,13 @@ textarea.input {
 }
 
 .stay-page__title{
-    max-width: 568px;
     margin-bottom: 92px !important;
     margin: 0 auto;
 }
-
-
-
-
-
-
-
-
-
+hi
 .main-section__top-title{
     margin-bottom: 20px;
 }
-
-
-
-
-
-
-
-
 
 
 .text-animation{
@@ -2633,4 +2652,9 @@ display: block;
 
 .text-center {
     text-align: center;
+}
+
+.seo-image-wrapper {
+    display: flex;
+    justify-content: center;
 }

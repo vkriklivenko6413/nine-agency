@@ -20,7 +20,7 @@
     </style>
 </head>
 
-<body style="" class="dark">
+<body style="" class="dark {{ app()->getLocale() === 'ru' ? 'body-ru' : '' }}">
     <div class="wrapper">
 
         @include('website-n.includes.header')

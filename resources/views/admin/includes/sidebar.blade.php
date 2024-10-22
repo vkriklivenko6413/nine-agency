@@ -29,6 +29,12 @@
                 </svg> Projects
             </a>
 
+            <a class="nav-link" href="{{ route('admin.seo.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-diamond"></use>
+                </svg> Seo
+            </a>
+
             <a class="nav-link" href="{{ route('admin.clients.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="/admin-src/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>

@@ -1,5 +1,16 @@
 <h5 class="mb-3">Videos section</h5>
+<div class="col-md-12">
+    <label for="videos_features_visible" class="form-label">Visible</label>
 
+    <input
+        type="checkbox"
+        id="videos_features_visible"
+        name="videos_features_visible"
+        class="form-input"
+        value="true"
+        {{ isset($variables->{'videos_features_visible'}) && $variables->{'videos_features_visible'} ? 'checked' : '' }}
+    />
+</div>
 <nav>
     <div class="nav nav-tabs" id="nav-tab-4" role="tablist">
         @foreach (config('app.languages') as $key => $label)

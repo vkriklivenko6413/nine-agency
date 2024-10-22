@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Variable;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class HomepageController extends Controller
 {
@@ -20,7 +23,7 @@ class HomepageController extends Controller
     public function update(Request $request)
     {
         foreach ($request->except(['_token', '_method']) as $key => $value) {
-            $variable = Variable::where('name', $key)->firstOrNew(['name' => $key]);
+            $variable = Variable::where('name', $key)->firstOrCreate(['name' => $key]);
 
             if ($request->hasFile($key)) {
                 $validatedData = Validator::make($request->only($key), [
@@ -31,8 +34,9 @@ class HomepageController extends Controller
                     return back()->withErrors($validatedData->errors());
                 }
 
-                $path = $value->store('images', 'public');
-                $variable->value = $path;
+                $media = $variable->addMedia($value)->toMediaCollection('images');
+
+                $variable->value = $media->id;
 
             } else {
                 $variable->value = $value;
@@ -42,5 +46,19 @@ class HomepageController extends Controller
         }
 
         return back()->with('success', 'Homepage data updated successfully.');
+    }
+
+    /**
+     * @param Media $media
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMedia(Media $media): RedirectResponse
+    {
+        $variable = Variable::findOrFail($media->model_id);
+        $variable->delete();
+        $media->delete();
+
+        return back()->with('success', 'Image deleted successfully.');
     }
 }

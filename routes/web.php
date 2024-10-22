@@ -12,10 +12,12 @@ use App\Http\Controllers\Website\HomepageController as WebsiteHomepageController
 use App\Http\Controllers\Website\LanguageController;
 use App\Http\Controllers\Website\NewsController as WebsiteNewsController;
 use App\Http\Controllers\Website\ProjectsController as WebsiteProjectsController;
+use App\Http\Controllers\Website\SeoController;
 use App\Http\Middleware\LoadAdminVariables;
 use App\Http\Middleware\LoadWebsiteVariables;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SeoController as AdminSeoController;
 
 Route::name('website.')->middleware([LoadWebsiteVariables::class, SetLocale::class])->group(function () {
     Route::get('/', [WebsiteHomepageController::class, 'index'])->name('homepage');
@@ -24,6 +26,7 @@ Route::name('website.')->middleware([LoadWebsiteVariables::class, SetLocale::cla
     Route::get('/project/{projectSlug}', [WebsiteProjectsController::class, 'project'])->name('project');
     Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
     Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+    Route::get('seo/{seoSlug}', [SeoController::class, 'show'])->name('seo.show');
 });
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -37,6 +40,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::
     Route::name('homepage.')->prefix('homepage')->group(function () {
         Route::get('/', [HomepageController::class, 'index'])->name('index');
         Route::post('/', [HomepageController::class, 'update'])->name('update');
+        Route::get('/{media}/delete', [HomepageController::class, 'destroyMedia'])->name('media.destroy');
     });
 
     Route::name('clients.')->prefix('clients')->group(function () {
@@ -53,6 +57,16 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::
         Route::post('/{project}', [ProjectsController::class, 'update'])->name('update');
         Route::get('/{project}/delete', [ProjectsController::class, 'destroy'])->name('destroy');
         Route::get('/{project}/images/{mediaId}/delete', [ProjectsController::class, 'destroyPhoto'])->name('images.destroy');
+    });
+
+    Route::name('seo.')->prefix('seo')->group(function () {
+        Route::get('/', [AdminSeoController::class, 'index'])->name('index');
+        Route::get('/add', [AdminSeoController::class, 'create'])->name('create');
+        Route::post('/add', [AdminSeoController::class, 'store'])->name('store');
+        Route::get('/{seo}', [AdminSeoController::class, 'edit'])->name('edit');
+        Route::post('/{seo}', [AdminSeoController::class, 'update'])->name('update');
+        Route::get('/{seo}/delete', [AdminSeoController::class, 'destroy'])->name('destroy');
+        Route::get('/{seo}/images/{mediaId}/delete', [AdminSeoController::class, 'destroyPhoto'])->name('images.destroy');
     });
 
     Route::name('news.')->prefix('news')->group(function () {

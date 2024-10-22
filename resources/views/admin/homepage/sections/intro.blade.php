@@ -1,5 +1,17 @@
 <h5 class="mb-3">Intro section</h5>
 
+<div class="col-md-12">
+    <label for="intro_features_visible" class="form-label">Visible</label>
+
+    <input
+        type="checkbox"
+        id="intro_features_visible"
+        name="intro_features_visible"
+        class="form-input"
+        value="true"
+        {{ $variables->{'intro_features_visible'} ? 'checked' : '' }}
+    />
+</div>
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         @foreach (config('app.languages') as $key => $label)

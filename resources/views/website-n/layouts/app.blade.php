@@ -13,7 +13,7 @@
     <captcha-widgets></captcha-widgets>
 </head>
 
-<body style="">
+<body style="" class="{{ app()->getLocale() === 'ru' ? 'body-ru' : '' }}">
     <div class="wrapper">
 
         @include('website-n.includes.header')

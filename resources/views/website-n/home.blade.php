@@ -4,7 +4,8 @@
 
 @section('main')
     <main class="page">
-        <section class="page__main-section main-section" id="get_started" style="margin-bottom: 0 !important">
+        @if($homepageVariables->{'intro_features_visible'} ?? false)
+            <section class="page__main-section main-section" id="get_started" style="margin-bottom: 0 !important">
             <div class="main-section__container">
                 <div class="main-section__info">
                     <div class="main-section__svg">
@@ -81,8 +82,9 @@
                 </div>
             </div>
         </section>
-
-        <div id="projects" class="page__with-us with-us" style="padding-top: 10rem">
+        @endif
+        @if($homepageVariables->{'projects_features_visible'} ?? false)
+            <div id="projects" class="page__with-us with-us" style="padding-top: 10rem">
             <div class="with-us__container">
                 <h3 class="with-us__title title">
                     {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}
@@ -147,8 +149,9 @@
                     class="with-us__more">See all projects</a> --}}
             </div>
         </div>
-
-        <section class="seo-page seo-page-pc">
+        @endif
+        @if($homepageVariables->{'seo_features_visible'} ?? false)
+            <section class="seo-page seo-page-pc">
             <div class="seo-page__container grid">
                 <div class="grid__tile grid__tile--text">
                     <div class="seo-page__title title title-left">
@@ -158,65 +161,26 @@
                         {{ $homepageVariables->{'seo_section_text_' . app()->getLocale()} ?? '' }}
                     </div>
                 </div>
-                <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                    <div class="item-seo__icon">
-                        <img src="/website-src/img/01(2).svg" alt="" />
+                @foreach($seos as $seo)
+                    <div class="seo-page__item item-seo item-seo--gray grid__tile">
+                        <div class="item-seo__image">
+                            <img src="{{ $seo->getFirstMediaUrl('images') }}" alt="{{ $seo->title }}" />
+                        </div>
+                        <div class="seo-item__info">
+                            <div class="company-main__title">
+                                {{ $seo->title }}
+                            </div>
+                            <div class="seo-item__text">
+                                {{ substr($seo->description, 0, 50) }}...
+                            </div>
+                            <a href="{{ route('website.seo.show', $seo->slug) }}"
+                               class="company-main__more">{{ __('See more') }}</a>
+                        </div>
                     </div>
-                    <div class="item-seo__title">
-                        {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="item-seo__text">
-                        {{ $homepageVariables->{'seo_block1_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
-                <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                    <div class="item-seo__icon">
-                        <img src="/website-src/img/02(2).svg" alt="" />
-                    </div>
-                    <div class="item-seo__title">
-                        {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="item-seo__text">
-                        {{ $homepageVariables->{'seo_block2_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
-                <div class="seo-page__item item-seo grid__tile">
-                    <div class="item-seo__icon">
-                        <img src="/website-src/img/03(1).svg" alt="" />
-                    </div>
-                    <div class="item-seo__title">
-                        {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="item-seo__text">
-                        {{ $homepageVariables->{'seo_block3_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
-                <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                    <div class="item-seo__icon">
-                        <img src="/website-src/img/04(1).svg" alt="" />
-                    </div>
-                    <div class="item-seo__title">
-                        {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="item-seo__text">
-                        {{ $homepageVariables->{'seo_block4_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
-                <div class="seo-page__item item-seo grid__tile">
-                    <div class="item-seo__icon">
-                        <img src="/website-src/img/05(1).svg" alt="" />
-                    </div>
-                    <div class="item-seo__title">
-                        {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}
-                    </div>
-                    <div class="item-seo__text">
-                        {{ $homepageVariables->{'seo_block5_text_' . app()->getLocale()} ?? '' }}
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
-
-        <div class="seo-page__mobile mobile-seo">
+            <div class="seo-page__mobile mobile-seo">
             <div class="seo-page__container grid">
                 <div class="grid__tile grid__tile--text">
                     <div class="seo-page__title title title-left">
@@ -285,8 +249,9 @@
                 </div>
             </div>
         </div>
-
-        <section class="page__marketing marketing-page">
+        @endif
+        @if($homepageVariables->{'marketing_features_visible'} ?? false)
+            <section class="page__marketing marketing-page">
             <div class="marketing-page__container">
                 <div class="marketing-page__info">
                     <div class="marketing-page__title title">
@@ -350,8 +315,9 @@
                 </div>
             </div>
         </section>
-
-        <section id="tranding" class="tranding">
+        @endif
+        @if($homepageVariables->{'videos_features_visible'} ?? false)
+            <section id="tranding" class="tranding">
             <div class="tranding__container">
                 <h3 class="text-center title tranding__title">
                     {{ $homepageVariables->{'videos_section_title_' . app()->getLocale()} ?? '' }}
@@ -367,12 +333,12 @@
                         @foreach ($videos as $key => $video)
                             <div class="swiper-slide tranding-slide" data-swiper-slide-index="{{ $key + 1 }}"
                                 role="group">
-                                <div class="tranding-slide-img">
+                                <div class="tranding-slide-img" data-video-url="{{ $video->video }}">
                                     <img src="{{ $video->getFirstMediaUrl('images') }}" />
                                     <img src="{{ asset('website-src/img/download.svg') }}" class="download-svg"
                                         style="z-index: 5000" />
                                 </div>
-                                <iframe class="slide__video video-slide" width="558" height="406"
+                                <iframe class="slide__video video-slide" loading="lazy" width="558" height="406"
                                     src="{{ $video->video }}" title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -396,32 +362,34 @@
                 </div>
             </div>
         </section>
-
-{{--        <section class="page__ai ai-page">--}}
-{{--            <div class="ai-page__container">--}}
-{{--                <div class="ai-page__info">--}}
-{{--                    <div class="ai-page__title title">--}}
-{{--                        {{ $homepageVariables->{'ai_section_title_' . app()->getLocale()} ?? '' }}--}}
-{{--                    </div>--}}
-{{--                    <div class="ai-page__text text">--}}
-{{--                        {{ $homepageVariables->{'ai_section_text_' . app()->getLocale()} ?? '' }}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="ai-page__items">--}}
-{{--                    <div class="ai-page__item">--}}
-{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_1 ?? '') }}" alt="" />--}}
-{{--                    </div>--}}
-{{--                    <div class="ai-page__item">--}}
-{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_2 ?? '') }}" alt="" />--}}
-{{--                    </div>--}}
-{{--                    <div class="ai-page__item">--}}
-{{--                        <img src="{{ Storage::url($homepageVariables->ai_section_img_3 ?? '') }}" alt="" />--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </section>--}}
-
-        <section class="page__stay stay-page" style="margin-bottom: 0 !important">
+        @endif
+        @if($homepageVariables->{'ai_features_visible'} ?? false)
+            <section class="page__ai ai-page">
+            <div class="ai-page__container">
+                <div class="ai-page__info">
+                    <div class="ai-page__title title">
+                        {{ $homepageVariables->{'ai_section_title_' . app()->getLocale()} ?? '' }}
+                    </div>
+                    <div class="ai-page__text text">
+                        {{ $homepageVariables->{'ai_section_text_' . app()->getLocale()} ?? '' }}
+                    </div>
+                </div>
+                <div class="ai-page__items">
+                    <div class="ai-page__item">
+                        <img src="{{ Storage::url($homepageVariables->ai_section_img_1 ?? '') }}" alt="" />
+                    </div>
+                    <div class="ai-page__item">
+                        <img src="{{ Storage::url($homepageVariables->ai_section_img_2 ?? '') }}" alt="" />
+                    </div>
+                    <div class="ai-page__item">
+                        <img src="{{ Storage::url($homepageVariables->ai_section_img_3 ?? '') }}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
+        @if($homepageVariables->{'news_features_visible'} ?? false)
+            <section class="page__stay stay-page" style="margin-bottom: 0 !important">
             <div class="stay-page__container">
                 <div class="stay-page__title title">
                     {{ $homepageVariables->{'news_section_title_' . app()->getLocale()} ?? '' }}
@@ -458,8 +426,9 @@
                 </a>
             </div>
         </section>
-
-        <section class="page__contact conatact-page" id="contact" style="padding-top: 10rem">
+        @endif
+        @if($homepageVariables->{'contact_features_visible'} ?? false)
+            <section class="page__contact conatact-page" id="contact" style="padding-top: 10rem">
             <div class="con__container">
                 <div class="conatact-page__info">
                     <div class="conatact-page__title title">
@@ -516,7 +485,7 @@
                 </div>
             </div>
         </section>
-
+        @endif
     </main>
 
     @if (session('success'))
