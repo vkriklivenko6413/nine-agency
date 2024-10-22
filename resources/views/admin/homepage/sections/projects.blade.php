@@ -8,7 +8,7 @@
         name="projects_features_visible"
         class="form-input"
         value="true"
-        {{ $variables->{'projects_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'projects_features_visible'}) && $variables->{'projects_features_visible'} ? 'checked' : '' }}
     />
 </div>
 <nav>

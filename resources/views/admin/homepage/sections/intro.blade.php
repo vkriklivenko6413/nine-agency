@@ -9,7 +9,7 @@
         name="intro_features_visible"
         class="form-input"
         value="true"
-        {{ $variables->{'intro_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'intro_features_visible'}) && $variables->{'intro_features_visible'} ? 'checked' : '' }}
     />
 </div>
 <nav>
