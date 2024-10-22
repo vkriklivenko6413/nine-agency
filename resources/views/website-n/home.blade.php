@@ -208,52 +208,6 @@
                             </div>
                         </div>
                     @endforeach
-
-
-                    <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                        <div class="item-seo__icon">
-                            <img src="/website-src/img/02(2).svg" alt="" />
-                        </div>
-                        <div class="item-seo__title">
-                            {{ $homepageVariables->{'seo_block2_title_' . app()->getLocale()} ?? '' }}
-                        </div>
-                        <div class="item-seo__text">
-                            {{ $homepageVariables->{'seo_block2_text_' . app()->getLocale()} ?? '' }}
-                        </div>
-                    </div>
-                    <div class="seo-page__item item-seo grid__tile">
-                        <div class="item-seo__icon">
-                            <img src="/website-src/img/03(1).svg" alt="" />
-                        </div>
-                        <div class="item-seo__title">
-                            {{ $homepageVariables->{'seo_block3_title_' . app()->getLocale()} ?? '' }}
-                        </div>
-                        <div class="item-seo__text">
-                            {{ $homepageVariables->{'seo_block3_text_' . app()->getLocale()} ?? '' }}
-                        </div>
-                    </div>
-                    <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                        <div class="item-seo__icon">
-                            <img src="/website-src/img/04(1).svg" alt="" />
-                        </div>
-                        <div class="item-seo__title">
-                            {{ $homepageVariables->{'seo_block4_title_' . app()->getLocale()} ?? '' }}
-                        </div>
-                        <div class="item-seo__text">
-                            {{ $homepageVariables->{'seo_block4_text_' . app()->getLocale()} ?? '' }}
-                        </div>
-                    </div>
-                    <div class="seo-page__item item-seo grid__tile">
-                        <div class="item-seo__icon">
-                            <img src="/website-src/img/05(1).svg" alt="" />
-                        </div>
-                        <div class="item-seo__title">
-                            {{ $homepageVariables->{'seo_block5_title_' . app()->getLocale()} ?? '' }}
-                        </div>
-                        <div class="item-seo__text">
-                            {{ $homepageVariables->{'seo_block5_text_' . app()->getLocale()} ?? '' }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

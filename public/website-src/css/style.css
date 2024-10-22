@@ -68,15 +68,10 @@ flex-direction: column;
 
 }
 .mobile-seo__wrapper{
-
-
-
-
   display: flex;
-overflow-x: auto;
-gap: 20px;
-
-
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 20px;
 }
 
 @media (max-width:767.98){
