@@ -191,17 +191,25 @@
                     </div>
                 </div>
                 <div class="mobile-seo__wrapper">
-                    <div class="seo-page__item item-seo item-seo--gray grid__tile">
-                        <div class="item-seo__icon">
-                            <img src="/website-src/img/01(2).svg" alt="" />
+                    @foreach($seos as $seo)
+                        <div class="seo-page__item item-seo item-seo--gray grid__tile">
+                            <div class="item-seo__image">
+                                <img src="{{ $seo->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $seo->title }}" />
+                            </div>
+                            <div class="seo-item__info">
+                                <div class="company-main__title">
+                                    {{ $seo->title }}
+                                </div>
+                                <div class="seo-item__text">
+                                    {{ substr($seo->description, 0, 50) }}...
+                                </div>
+                                <a href="{{ route('website.seo.show', $seo->slug) }}"
+                                   class="company-main__more">{{ __('See more') }}</a>
+                            </div>
                         </div>
-                        <div class="item-seo__title">
-                            {{ $homepageVariables->{'seo_block1_title_' . app()->getLocale()} ?? '' }}
-                        </div>
-                        <div class="item-seo__text">
-                            {{ $homepageVariables->{'seo_block1_text_' . app()->getLocale()} ?? '' }}
-                        </div>
-                    </div>
+                    @endforeach
+
+
                     <div class="seo-page__item item-seo item-seo--gray grid__tile">
                         <div class="item-seo__icon">
                             <img src="/website-src/img/02(2).svg" alt="" />

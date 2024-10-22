@@ -1305,9 +1305,7 @@ textarea.input {
     .mobile-seo .seo-page__title:not(:last-child) {
         margin-bottom: 4rem;
     }
-    .mobile-seo .item-seo__image {
-        margin-bottom: 3.375rem;
-    }
+
     .mobile-seo .seo-page__item {
         width: 100%;
         aspect-ratio: 0;
