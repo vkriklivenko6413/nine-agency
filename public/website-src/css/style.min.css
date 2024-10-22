@@ -1493,11 +1493,11 @@ textarea.input {
 }
 @media (max-width: 37.5em) {
     .title {
-        text-align: left;
+        text-align: center;
         max-width: none;
     }
     .text {
-        text-align: left;
+        text-align: center;
         max-width: none;
     }
 }

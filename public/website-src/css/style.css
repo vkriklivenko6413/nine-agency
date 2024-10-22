@@ -2,18 +2,7 @@
 
 .text-center {
   text-align: center;
- 
-}
 
-@media (max-width: 767.98px){
-  .tranding__text{
-
-    max-width: none !important;
-        }
-        .text-center {
-          text-align: left;
-         
-        }
 }
 
 
@@ -65,11 +54,6 @@ height: 406px;
       margin-bottom: 64px;
 
   }
-.tranding__title{
-  text-align: left !important;
-
-}
-    
 }
 
 
@@ -103,14 +87,14 @@ min-width: 80vw;
 
 }
 .mobile-seo .seo-page__item {
- 
+
 }
 @media (max-width: 767.98px){
   .grid__tile{
     grid-column: auto !important;
     grid-row: auto !important;
   }
-   
+
   .seo-page__item{
   }
 }
@@ -147,7 +131,7 @@ overflow-y: auto;
 
 
 @media (min-width: 767.98px){
- 
+
 }
 body.dark2::before {
   background: rgba(0, 0, 0, 0.6);
@@ -204,7 +188,7 @@ body::before {
   position: absolute !important;
   left: 50% !important;
   top: 50% !important;
-  transform: translate(-50%,-50%) !important; 
+  transform: translate(-50%,-50%) !important;
 width:48px !important;
  height:48px !important;
 }
@@ -248,7 +232,7 @@ visibility: visible;
 @media (max-width: 767.97px){
     .tranding-slide-img::after{
     }
-  
+
 }
 .active-slide{
 
@@ -259,7 +243,7 @@ visibility: visible;
 
 }
      .video-slide{
-  
+
       display: none;
 
 position: absolute;
