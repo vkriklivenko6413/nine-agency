@@ -28,7 +28,7 @@ class ProjectsController extends Controller
             'description' => 'required|array',
             'description.*' => 'required|string',
             'slug' => 'nullable|string|unique:projects,slug',
-            'images.*' => 'nullable|file|image|max:2048'
+            'images.*.*' => 'nullable|file|image'
         ]);
 
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title'][app()->getLocale()]) . rand(0, 10000);
@@ -44,11 +44,16 @@ class ProjectsController extends Controller
             $project->setTranslation('description', $locale, $description);
         }
 
+
         $project->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $project->addMedia($image)->toMediaCollection('images');
+        $locales = config('app.languages');
+
+        foreach (array_keys($locales) as $locale) {
+            if ($request->hasFile('images.' . $locale)) {
+                foreach ($request->file('images.' . $locale) as $image) {
+                    $project->addMedia($image)->toMediaCollection('images.' . $locale);
+                }
             }
         }
 
@@ -68,7 +73,7 @@ class ProjectsController extends Controller
             'description' => 'required|array',
             'description.*' => 'required|string',
             'slug' => 'nullable|string|unique:projects,slug,' . $project->id,
-            'images.*' => 'nullable|file|image|max:2048'
+            'images.*.*' => 'nullable|file|image'
         ]);
 
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title'][app()->getLocale()]) . rand(0, 10000);
@@ -85,9 +90,13 @@ class ProjectsController extends Controller
 
         $project->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $project->addMedia($image)->toMediaCollection('images');
+        $locales = config('app.languages');
+
+        foreach (array_keys($locales) as $locale) {
+            if ($request->hasFile('images.' . $locale)) {
+                foreach ($request->file('images.' . $locale) as $image) {
+                    $res = $project->addMedia($image)->toMediaCollection('images.' . $locale);
+                }
             }
         }
 
@@ -101,9 +110,9 @@ class ProjectsController extends Controller
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
 
-    public function destroyPhoto(Project $project, $mediaId)
+    public function destroyPhoto(Project $project, $mediaId, string $locale)
     {
-        $media = $project->getMedia('images')->where('id', $mediaId)->first();
+        $media = $project->getMedia('images.' . $locale)->where('id', $mediaId)->first();
         if ($media) {
             $media->delete();
             return redirect()->route('admin.projects.edit', $project)->with('success', 'Image deleted successfully.');

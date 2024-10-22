@@ -45,7 +45,7 @@ class SeoController extends Controller
             'description' => 'required|array',
             'description.*' => 'required|string',
             'slug' => 'nullable|string|unique:seos,slug',
-            'images.*' => 'nullable|file|image'
+            'images.*.*' => 'nullable|file|image',
         ]);
 
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title'][app()->getLocale()]) . rand(0, 10000);
@@ -63,9 +63,13 @@ class SeoController extends Controller
 
         $seo->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $seo->addMedia($image)->toMediaCollection('images');
+        $locales = config('app.languages');
+
+        foreach (array_keys($locales) as $locale) {
+            if ($request->hasFile('images.' . $locale)) {
+                foreach ($request->file('images.' . $locale) as $image) {
+                    $seo->addMedia($image)->toMediaCollection('images.' . $locale);
+                }
             }
         }
 
@@ -99,7 +103,7 @@ class SeoController extends Controller
             'description' => 'required|array',
             'description.*' => 'required|string',
             'slug' => 'nullable|string|unique:seos,slug,' . $seo->id,
-            'images.*' => 'nullable|file|image'
+            'images.*.*' => 'nullable|file|image'
         ]);
 
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title'][app()->getLocale()]) . rand(0, 10000);
@@ -116,9 +120,13 @@ class SeoController extends Controller
 
         $seo->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $seo->addMedia($image)->toMediaCollection('images');
+        $locales = config('app.languages');
+
+        foreach (array_keys($locales) as $locale) {
+            if ($request->hasFile('images.' . $locale)) {
+                foreach ($request->file('images.' . $locale) as $image) {
+                    $seo->addMedia($image)->toMediaCollection('images.' . $locale);
+                }
             }
         }
 
@@ -145,9 +153,9 @@ class SeoController extends Controller
      *
      * @return RedirectResponse
      */
-    public function destroyPhoto(Seo $seo, $mediaId): RedirectResponse
+    public function destroyPhoto(Seo $seo, $mediaId, string $locale): RedirectResponse
     {
-        $media = $seo->getMedia('images')->where('id', $mediaId)->first();
+        $media = $seo->getMedia('images.' . $locale)->where('id', $mediaId)->first();
 
         if ($media) {
             $media->delete();

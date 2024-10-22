@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="case-page__items">
-                    @foreach ($project->getMedia('images') as $media)
+                    @foreach ($project->getMedia('images.' . app()->getLocale()) as $media)
                         <div class="case-page__item">
                             <img src="{{ $media->getUrl() }}" alt="" />
                         </div>

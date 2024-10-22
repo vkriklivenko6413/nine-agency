@@ -59,6 +59,12 @@
                                                           class="form-control" required>{{ old('description.' . $key) }}</textarea>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <label for="images" class="form-label">Images*</label>
+                                            <div class="input-group mb-3">
+                                                <input type="file" name="images[{{ $key }}][]" id="images" class="form-control" accept="image/*" multiple required>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -69,13 +75,6 @@
                                     <input type="text" name="slug"
                                            id="slug" class="form-control"
                                            value="{{ old('slug') }}">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="images" class="form-label">Images*</label>
-                                <div class="input-group mb-3">
-                                    <input type="file" name="images[]" id="images" class="form-control" accept="image/*" multiple required>
                                 </div>
                             </div>
 

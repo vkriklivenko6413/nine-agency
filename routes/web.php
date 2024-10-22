@@ -56,7 +56,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::
         Route::get('/{project}', [ProjectsController::class, 'edit'])->name('edit');
         Route::post('/{project}', [ProjectsController::class, 'update'])->name('update');
         Route::get('/{project}/delete', [ProjectsController::class, 'destroy'])->name('destroy');
-        Route::get('/{project}/images/{mediaId}/delete', [ProjectsController::class, 'destroyPhoto'])->name('images.destroy');
+        Route::get('/{project}/images/{mediaId}/delete/{locale}', [ProjectsController::class, 'destroyPhoto'])->name('images.destroy');
     });
 
     Route::name('seo.')->prefix('seo')->group(function () {
@@ -66,7 +66,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', LoadAdminVariables::
         Route::get('/{seo}', [AdminSeoController::class, 'edit'])->name('edit');
         Route::post('/{seo}', [AdminSeoController::class, 'update'])->name('update');
         Route::get('/{seo}/delete', [AdminSeoController::class, 'destroy'])->name('destroy');
-        Route::get('/{seo}/images/{mediaId}/delete', [AdminSeoController::class, 'destroyPhoto'])->name('images.destroy');
+        Route::get('/{seo}/images/{mediaId}/delete/{locale}', [AdminSeoController::class, 'destroyPhoto'])->name('images.destroy');
     });
 
     Route::name('news.')->prefix('news')->group(function () {

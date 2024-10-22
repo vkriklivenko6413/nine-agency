@@ -67,6 +67,37 @@
                                                     class="form-control" required>{{ old('description.' . $key, $project->getTranslation('description', $key)) }}</textarea>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 mb-3 mt-3">
+                                            <label class="form-label">
+                                                <h5>Existing Images</h5>
+                                            </label>
+                                            <div class="row">
+
+                                                @foreach ($project->getMedia('images.' . $key) as $image)
+                                                    <div class="col-md-3 mt-2 position-relative">
+                                                        <div class="d-flex justify-content-center align-items-center"
+                                                             style="height: 300px;">
+                                                            <img src="{{ $image->getUrl() }}" alt="Image" class="img-thumbnail mb-2"
+                                                                 style="max-height: 100%; max-width: 100%;">
+                                                            <div class="position-absolute top-50 start-50 translate-middle">
+                                                                <a href="{{ route('admin.projects.images.destroy', ['project' => $project->id, 'mediaId' => $image->id, 'locale' => $key]) }}"
+                                                                   class="delete">
+                                                                    <button type="button" class="btn btn-danger">Delete</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="images" class="form-label">Add new images</label>
+                                            <div class="input-group mb-3">
+                                                <input type="file" name="images[{{ $key }}][]" id="images" class="form-control"
+                                                       accept="image/*" multiple>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -76,37 +107,6 @@
                                 <div class="input-group mb-3">
                                     <input type="text" name="slug" id="slug" class="form-control"
                                         value="{{ old('slug', $project->slug) }}">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 mb-3 mt-3">
-                                <label class="form-label">
-                                    <h5>Existing Images</h5>
-                                </label>
-                                <div class="row">
-                                    @foreach ($project->getMedia('images') as $image)
-                                        <div class="col-md-3 mt-2 position-relative">
-                                            <div class="d-flex justify-content-center align-items-center"
-                                                style="height: 300px;">
-                                                <img src="{{ $image->getUrl() }}" alt="Image" class="img-thumbnail mb-2"
-                                                    style="max-height: 100%; max-width: 100%;">
-                                                <div class="position-absolute top-50 start-50 translate-middle">
-                                                    <a href="{{ route('admin.projects.images.destroy', ['project' => $project->id, 'mediaId' => $image->id]) }}"
-                                                        class="delete">
-                                                        <button type="button" class="btn btn-danger">Delete</button>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="images" class="form-label">Add new images</label>
-                                <div class="input-group mb-3">
-                                    <input type="file" name="images[]" id="images" class="form-control"
-                                        accept="image/*" multiple>
                                 </div>
                             </div>
 

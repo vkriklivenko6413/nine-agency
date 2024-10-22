@@ -97,7 +97,7 @@
                         @if ($index % 3 == 0)
                             <div class="with-us__item">
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}"
+                                    <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}"
                                         class="small" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
@@ -114,7 +114,7 @@
                         @elseif($index % 3 == 1)
                             <div class="with-us__item two">
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}" />
+                                    <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
                                             {{ $project->title }}
@@ -128,7 +128,7 @@
                                 </div>
                             @else
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images') }}" alt="{{ $project->title }}" />
+                                    <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
                                     <div class="company-main__info">
                                         <div class="company-main__title">
                                             {{ $project->title }}
@@ -164,7 +164,7 @@
                 @foreach($seos as $seo)
                     <div class="seo-page__item item-seo item-seo--gray grid__tile">
                         <div class="item-seo__image">
-                            <img src="{{ $seo->getFirstMediaUrl('images') }}" alt="{{ $seo->title }}" />
+                            <img src="{{ $seo->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $seo->title }}" />
                         </div>
                         <div class="seo-item__info">
                             <div class="company-main__title">
