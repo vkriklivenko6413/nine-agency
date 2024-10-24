@@ -29,7 +29,6 @@
     "About us": "About us",
     "Our cases": "Our cases",
     "News": "News",
-    "Contact": "Contact",
     "Get the freshest news from us": "Get the freshest news from us",
     "Subscribe": "Subscribe",
     "Terms & Conditions": "Terms & Conditions",
@@ -37,5 +36,6 @@
     "Accessibility": "Accessibility",
     "Legal": "Legal",
     "Your email address…": "Your email address…",
-    "Get Started": "Get Started"
+    "Get Started": "Contact",
+    "Contact": "Contact"
 }
