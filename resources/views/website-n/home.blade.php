@@ -72,12 +72,14 @@
                     </div>
                 </div>
                 <div class="main-section__company company-main company-main-mobile">
-                    <div class="company-main__items">
-                        @foreach ($clients as $client)
-                            <div class="company-main__item">
-                                <img src="{{ Storage::url($client->logo) }}" alt="" />
-                            </div>
-                        @endforeach
+                    <div class="company-main__items  items-wrap">
+                        <div class="brands-scroll__items items marquee">
+                            @foreach ($clients as $client)
+                                <div class="company-main__item">
+                                    <img src="{{ Storage::url($client->logo) }}" alt="" />
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
