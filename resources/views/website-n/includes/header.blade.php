@@ -41,7 +41,7 @@
             </nav>
         </div>
 
-        <a href="{{ route('website.homepage') . '#get_started' }}"
+        <a href="{{ route('website.homepage') . '#contact' }}"
             class="header__button button button--rgba">{{ __('Get Started') }}</a>
 
         <div class="header__lang">

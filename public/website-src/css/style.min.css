@@ -1120,8 +1120,6 @@ textarea.input {
         display: flex;
         padding: 20px;
         width: 100%;
-        margin-left: 10px;
-        margin-right: 10px;
         justify-content: space-between;
         border: 1px solid #fff;
         border-radius: 16px;
@@ -1775,7 +1773,7 @@ textarea.input {
 }
 .conatact-page__text {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 22px;
     line-height: 137%;
     text-align: center;
     margin: 0 auto;
@@ -1949,15 +1947,16 @@ textarea.input {
         transform: translateY(0);
     }
 
-    .item-seo:hover .seo-item__info {
-        overflow: visible;
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
 }
 .with-us__wrapper {
     position: relative;
+}
+
+.item-seo:hover .seo-item__info {
+    overflow: visible;
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
 }
 
 .seo-item__info {
@@ -2173,6 +2172,7 @@ height: 115px;
     @media (max-width: 768px){
       .text-animation{
           height: 74px;
+          font-size: 34px;
       }
     }
     @media (max-width: 420px){
@@ -2216,49 +2216,49 @@ height: 115px;
           margin-top: 0;
         }
     }
-    @media (max-width: 768px){
-      @keyframes anim {
-        0% {
-          margin-top: 0;
-        }
-        20% {
-          margin-top: -100px; /* Пропорційно до -115.19px */
-        }
-        40% {
-          margin-top: -172px; /* Пропорційно до -230.38px */
-        }
-        60% {
-          margin-top: -260px; /* Пропорційно до -345.57px */
-        }
-        80% {
-          margin-top: -340px; /* Пропорційно до -460.76px */
-        }
-        100% {
-          margin-top: 0;
-        }
-      }
+    /*@media (max-width: 768px){*/
+    /*  @keyframes anim {*/
+    /*    0% {*/
+    /*      margin-top: 0;*/
+    /*    }*/
+    /*    20% {*/
+    /*      margin-top: -100px; !* Пропорційно до -115.19px *!*/
+    /*    }*/
+    /*    40% {*/
+    /*      margin-top: -172px; !* Пропорційно до -230.38px *!*/
+    /*    }*/
+    /*    60% {*/
+    /*      margin-top: -260px; !* Пропорційно до -345.57px *!*/
+    /*    }*/
+    /*    80% {*/
+    /*      margin-top: -340px; !* Пропорційно до -460.76px *!*/
+    /*    }*/
+    /*    100% {*/
+    /*      margin-top: 0;*/
+    /*    }*/
+    /*  }*/
     }
-    @media (max-width: 420px){
-      @keyframes anim {
-        0% {
-          margin-top: 0;
-        }
-        20% {
-          margin-top: -62px; /* Пропорційно до -115.19px */
-        }
-        40% {
-          margin-top: -124px; /* Пропорційно до -230.38px */
-        }
-        60% {
-          margin-top: -186px; /* Пропорційно до -345.57px */
-        }
-        80% {
-          margin-top: -248px; /* Пропорційно до -460.76px */
-        }
-        100% {
-          margin-top: 0;
-        }
-      }
+    /*@media (max-width: 420px){*/
+    /*  @keyframes anim {*/
+    /*    0% {*/
+    /*      margin-top: 0;*/
+    /*    }*/
+    /*    20% {*/
+    /*      margin-top: -62px; !* Пропорційно до -115.19px *!*/
+    /*    }*/
+    /*    40% {*/
+    /*      margin-top: -124px; !* Пропорційно до -230.38px *!*/
+    /*    }*/
+    /*    60% {*/
+    /*      margin-top: -186px; !* Пропорційно до -345.57px *!*/
+    /*    }*/
+    /*    80% {*/
+    /*      margin-top: -248px; !* Пропорційно до -460.76px *!*/
+    /*    }*/
+    /*    100% {*/
+    /*      margin-top: 0;*/
+    /*    }*/
+    /*  }*/
     }
     @media (max-width: 395px){
       @keyframes anim {
@@ -2266,16 +2266,16 @@ height: 115px;
           margin-top: 0;
         }
         20% {
-          margin-top: -49px; /* Пропорційно до -115.19px */
+          margin-top: -74px; /* Пропорційно до -115.19px */
         }
         40% {
-          margin-top: -98px; /* Пропорційно до -230.38px */
+          margin-top: -148px; /* Пропорційно до -230.38px */
         }
         60% {
-          margin-top: -147px; /* Пропорційно до -345.57px */
+          margin-top: -222px; /* Пропорційно до -345.57px */
         }
         80% {
-          margin-top: -196px; /* Пропорційно до -460.76px */
+          margin-top: -296px; /* Пропорційно до -460.76px */
         }
         100% {
           margin-top: 0;
@@ -2330,9 +2330,9 @@ height: 115px;
       }
     }
 
-    @media (max-width: 395px){
+    @media (max-width: 525px){
       .text-animation{
-          height: 50px;
+          height: 38px;
       }
     }
     .item1{
@@ -2386,44 +2386,23 @@ height: 115px;
         }
       }
     }
+
     @media (max-width: 525px){
       @keyframes anim {
         0% {
           margin-top: 0;
         }
         20% {
-          margin-top: -62px; /* Пропорційно до -115.19px */
+          margin-top: -36px; /* Пропорційно до -115.19px */
         }
         40% {
-          margin-top: -124px; /* Пропорційно до -230.38px */
+          margin-top: -74px; /* Пропорційно до -230.38px */
         }
         60% {
-          margin-top: -186px; /* Пропорційно до -345.57px */
+          margin-top: -112px; /* Пропорційно до -345.57px */
         }
         80% {
-          margin-top: -248px; /* Пропорційно до -460.76px */
-        }
-        100% {
-          margin-top: 0;
-        }
-      }
-    }
-    @media (max-width: 395px){
-      @keyframes anim {
-        0% {
-          margin-top: 0;
-        }
-        20% {
-          margin-top: -49px; /* Пропорційно до -115.19px */
-        }
-        40% {
-          margin-top: -98px; /* Пропорційно до -230.38px */
-        }
-        60% {
-          margin-top: -147px; /* Пропорційно до -345.57px */
-        }
-        80% {
-          margin-top: -196px; /* Пропорційно до -460.76px */
+          margin-top: -150px; /* Пропорційно до -460.76px */
         }
         100% {
           margin-top: 0;
@@ -2450,8 +2429,9 @@ font-size: 96px !important;
       font-size: 52px !important;
     }
 
+
     .text-animation {
-        font-size: 36px !important;
+        font-size: 30px !important;
     }
 
     .main-section__text {
