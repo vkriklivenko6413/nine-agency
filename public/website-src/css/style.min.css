@@ -1216,7 +1216,8 @@ textarea.input {
     max-width: 35.5rem;
 }
 .seo-page__text {
-    max-width: 27.4375rem;
+    max-width: 36rem;
+    font-size: 24px;
 }
 .seo-page__item {
     width: 279px;
@@ -1339,8 +1340,9 @@ textarea.input {
     }
 }
 .marketing-page__text {
-    max-width: 24.3125rem;
+    max-width: 45rem;
     margin: 0 auto;
+    font-size: 24px;
 }
 .marketing-page__items {
     display: flex;
