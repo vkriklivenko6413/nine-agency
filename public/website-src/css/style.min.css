@@ -1451,8 +1451,10 @@ textarea.input {
     margin: 0 auto;
 }
 .ai-page__text {
-    max-width: 30.625rem;
+    max-width: 45rem;
     margin: 0 auto;
+    font-size: 24px;
+    margin-top: 2rem;
 }
 .ai-page__items {
     display: flex;
