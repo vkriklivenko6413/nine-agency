@@ -86,7 +86,7 @@
         </section>
         @endif
         @if($homepageVariables->{'projects_features_visible'} ?? false)
-            <div id="projects" class="page__with-us with-us" style="padding-top: 10rem">
+            <div id="projects" class="page__with-us with-us" style="padding-top: 5rem">
             <div class="with-us__container">
                 <h3 class="with-us__title title">
                     {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}

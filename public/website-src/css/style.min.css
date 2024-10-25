@@ -1123,6 +1123,7 @@ textarea.input {
         justify-content: space-between;
         border: 1px solid #fff;
         border-radius: 16px;
+        height: 140px;
     }
 }
 @media (min-width: 72.5em) {
@@ -1133,7 +1134,7 @@ textarea.input {
 @media (min-width: 20em) and (max-width: 72.5em) {
     @supports (width: clamp(3.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem)) {
         .company-main__item img {
-            width: clamp(3.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem);
+            width: clamp(7.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem);
         }
     }
     @supports not (width: clamp(3.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem)) {
