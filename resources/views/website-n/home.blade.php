@@ -4,7 +4,7 @@
 
 @section('main')
     <main class="page">
-        @if($homepageVariables->{'intro_features_visible'} ?? false)
+        @if(isset($homepageVariables->{'intro_features_visible'}) && $homepageVariables->{'intro_features_visible'} === 'true' ?? false)
             <section class="page__main-section main-section" id="get_started" style="margin-bottom: 0 !important">
             <div class="main-section__container">
                 <div class="main-section__info">
@@ -85,8 +85,8 @@
             </div>
         </section>
         @endif
-        @if($homepageVariables->{'projects_features_visible'} ?? false)
-            <div id="projects" class="page__with-us with-us" style="padding-top: 5rem">
+        @if(isset($homepageVariables->{'projects_features_visible'}) && $homepageVariables->{'projects_features_visible'} === 'true' ?? false)
+                <div id="projects" class="page__with-us with-us" style="padding-top: 5rem">
             <div class="with-us__container">
                 <h3 class="with-us__title title">
                     {{ $homepageVariables->{'projects_section_title_' . app()->getLocale()} ?? '' }}
@@ -152,8 +152,8 @@
             </div>
         </div>
         @endif
-        @if($homepageVariables->{'seo_features_visible'} ?? false)
-            <section class="seo-page seo-page-pc">
+        @if(isset($homepageVariables->{'seo_features_visible'}) && $homepageVariables->{'seo_features_visible'} === 'true' ?? false)
+                <section class="seo-page seo-page-pc">
             <div class="seo-page__container grid">
                 <div class="grid__tile grid__tile--text">
                     <div class="seo-page__title title title-left">
@@ -214,7 +214,7 @@
             </div>
         </div>
         @endif
-        @if($homepageVariables->{'marketing_features_visible'} ?? false)
+        @if(isset($homepageVariables->{'marketing_features_visible'}) && $homepageVariables->{'marketing_features_visible'} === 'true' ?? false)
             <section class="page__marketing marketing-page">
             <div class="marketing-page__container">
                 <div class="marketing-page__info">
@@ -280,7 +280,7 @@
             </div>
         </section>
         @endif
-        @if($homepageVariables->{'videos_features_visible'} ?? false)
+        @if(isset($homepageVariables->{'videos_features_visible'}) && $homepageVariables->{'videos_features_visible'} === 'true' ?? false)
             <section id="tranding" class="tranding">
             <div class="tranding__container">
                 <h3 class="text-center title tranding__title">
@@ -327,7 +327,7 @@
             </div>
         </section>
         @endif
-        @if($homepageVariables->{'ai_features_visible'} ?? false)
+        @if(isset($homepageVariables->{'ai_features_visible'}) && $homepageVariables->{'ai_features_visible'} === 'true' ?? false)
             <section class="page__ai ai-page">
             <div class="ai-page__container">
                 <div class="ai-page__info">
@@ -352,7 +352,7 @@
             </div>
         </section>
         @endif
-        @if($homepageVariables->{'news_features_visible'} ?? false)
+        @if(isset($homepageVariables->{'news_features_visible'}) && $homepageVariables->{'news_features_visible'} === 'true' ?? false)
             <section class="page__stay stay-page" style="margin-bottom: 0 !important">
             <div class="stay-page__container">
                 <div class="stay-page__title title">
@@ -391,8 +391,8 @@
             </div>
         </section>
         @endif
-        @if($homepageVariables->{'contact_features_visible'} ?? false)
-            <section class="page__contact conatact-page" id="contact" style="padding-top: 10rem">
+        @if(isset($homepageVariables->{'contact_features_visible'}) && $homepageVariables->{'contact_features_visible'} === 'true' ?? false)
+                <section class="page__contact conatact-page" id="contact" style="padding-top: 10rem">
             <div class="con__container">
                 <div class="conatact-page__info">
                     <div class="conatact-page__title title">

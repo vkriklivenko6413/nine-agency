@@ -1,14 +1,19 @@
 <h5 class="mb-3">SEO section</h5>
 <div class="col-md-12">
     <label for="seo_features_visible" class="form-label">Visible</label>
-
+    <input
+        type="hidden"
+        name="seo_features_visible"
+        class="form-input"
+        value="false"
+    />
     <input
         type="checkbox"
         id="seo_features_visible"
         name="seo_features_visible"
         class="form-input"
         value="true"
-        {{ isset($variables->{'seo_features_visible'}) && $variables->{'seo_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'seo_features_visible'}) && $variables->{'seo_features_visible'} === 'true' ? 'checked' : '' }}
     />
 </div>
 <nav>

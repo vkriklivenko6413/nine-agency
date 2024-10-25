@@ -1033,30 +1033,30 @@ textarea.input {
     font-size: 56px;
     text-align: center;
 }
-/*.main-section__label::after,*/
-/*.main-section__label::before {*/
-/*    position: absolute;*/
-/*    top: 50%;*/
-/*    -webkit-transform: translateY(-50%);*/
-/*    transform: translateY(-50%);*/
-/*    content: "";*/
-/*    width: 50px;*/
-/*    height: 2px;*/
-/*    background-color: #ee2f36;*/
-/*}*/
+.main-section__label::after,
+.main-section__label::before {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    content: "";
+    width: 50px;
+    height: 2px;
+    background-color: #ee2f36;
+}
 @media (max-width: 29.99875em) {
     .main-section__label::after,
     .main-section__label::before {
         width: 1.75rem;
     }
 }
-/*.main-section__label::after {*/
-/*    content: "";*/
-/*    margin-left: 37px;*/
-/*}*/
+.main-section__label::after {
+    content: "";
+    margin-left: 37px;
+}
 @media (max-width: 29.99875rem) {
     .main-section__label {
-        font-size: 36px;
+        font-size: 28px;
     }
     .main-section__label::after {
         display: none;
@@ -1065,10 +1065,15 @@ textarea.input {
         display: none;
     }
 }
-/*.main-section__label::before {*/
-/*    content: "";*/
-/*    margin-left: -87px;*/
-/*}*/
+.main-section__label::before {
+    content: "";
+    margin-left: -87px;
+}
+
+.main-section__label::after {
+    content: "";
+    right: 0;
+}
 
 .company-main {
     padding: 20px;
@@ -1306,8 +1311,13 @@ textarea.input {
         font-size: 1.625rem;
         text-align: center;
     }
+
+    .mobile-seo .seo-page__text {
+        margin-bottom: 2rem;
+    }
+
     .mobile-seo .seo-page__title:not(:last-child) {
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
 
     .mobile-seo .seo-page__item {
@@ -1500,10 +1510,12 @@ textarea.input {
     .title {
         text-align: center;
         max-width: none;
+        font-size: 28px !important;
     }
     .text {
         text-align: center;
         max-width: none;
+        font-size: 18px !important;
     }
 }
 .stay-page__title {

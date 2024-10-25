@@ -4,12 +4,19 @@
     <label for="intro_features_visible" class="form-label">Visible</label>
 
     <input
+        type="hidden"
+        name="intro_features_visible"
+        class="form-input"
+        value="false"
+    />
+
+    <input
         type="checkbox"
         id="intro_features_visible"
         name="intro_features_visible"
         class="form-input"
         value="true"
-        {{ isset($variables->{'intro_features_visible'}) && $variables->{'intro_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'intro_features_visible'}) && $variables->{'intro_features_visible'} === 'true' ? 'checked' : '' }}
     />
 </div>
 <nav>

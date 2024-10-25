@@ -3,12 +3,18 @@
     <label for="ai_features_visible" class="form-label">Visible</label>
 
     <input
+        type="hidden"
+        name="ai_features_visible"
+        class="form-input"
+        value="false"
+    />
+    <input
         type="checkbox"
         id="ai_features_visible"
         name="ai_features_visible"
         class="form-input"
         value="true"
-        {{ isset($variables->{'ai_features_visible'}) && $variables->{'ai_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'ai_features_visible'}) && $variables->{'ai_features_visible'} === 'true' ? 'checked' : '' }}
     />
 </div>
 <nav>

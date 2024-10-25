@@ -3,12 +3,19 @@
     <label for="contact_features_visible" class="form-label">Visible</label>
 
     <input
+        type="hidden"
+        name="contact_features_visible"
+        class="form-input"
+        value="false"
+    />
+
+    <input
         type="checkbox"
         id="contact_features_visible"
         name="contact_features_visible"
         class="form-input"
         value="true"
-        {{ isset($variables->{'contact_features_visible'}) && $variables->{'contact_features_visible'} ? 'checked' : '' }}
+        {{ isset($variables->{'contact_features_visible'}) && $variables->{'contact_features_visible'} === 'true' ? 'checked' : '' }}
     />
 </div>
 <nav>

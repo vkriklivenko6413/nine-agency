@@ -97,9 +97,6 @@ min-width: 80vw;
     .grid{
       display: block !important;
     }
-    .seo-page__text{
-      display: none;
-    }
 }
 
 .ai-page__items{
