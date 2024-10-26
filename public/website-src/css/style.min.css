@@ -1140,18 +1140,7 @@ textarea.input {
         width: 16.5rem;
     }
 }
-@media (min-width: 20em) and (max-width: 72.5em) {
-    @supports (width: clamp(3.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem)) {
-        .company-main__item img {
-            width: clamp(10rem, -1.1071428571rem + 24.2857142857vw, 16.5rem);
-        }
-    }
-    @supports not (width: clamp(3.75rem, -1.1071428571rem + 24.2857142857vw, 16.5rem)) {
-        .company-main__item img {
-            width: calc(3.75rem + 12.75 * (100vw - 20rem) / 52.5);
-        }
-    }
-}
+
 @media (max-width: 20em) {
     .company-main__item img {
         width: 3.75rem;
