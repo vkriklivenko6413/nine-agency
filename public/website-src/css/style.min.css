@@ -1127,7 +1127,6 @@ textarea.input {
     }
     .company-main-mobile .company-main__items {
         display: flex;
-        padding: 20px;
         width: 100%;
         justify-content: space-between;
         border: 1px solid #fff;
