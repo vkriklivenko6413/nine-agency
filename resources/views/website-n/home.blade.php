@@ -119,7 +119,10 @@
                         @elseif($index % 3 == 1)
                             <div class="with-us__item two">
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
+                                    <a href="{{ route('website.project', $project->slug) }}"
+                                       class="company-main__more">
+                                        <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
+                                    </a>
                                     <div class="company-main__info">
                                         <div class="company-main__title">
                                             {{ $project->title }}
@@ -133,7 +136,10 @@
                                 </div>
                             @else
                                 <div class="with-us__wrapper">
-                                    <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
+                                    <a href="{{ route('website.project', $project->slug) }}"
+                                       class="company-main__more">
+                                        <img src="{{ $project->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $project->title }}" />
+                                    </a>
                                     <div class="company-main__info">
                                         <div class="company-main__title">
                                             {{ $project->title }}
@@ -202,7 +208,10 @@
                     @foreach($seos as $seo)
                         <div class="seo-page__item item-seo item-seo--gray grid__tile">
                             <div class="item-seo__image">
-                                <img src="{{ $seo->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $seo->title }}" />
+                                <a href="{{ route('website.seo.show', $seo->slug) }}"
+                                   class="company-main__more">
+                                    <img src="{{ $seo->getFirstMediaUrl('images.' . app()->getLocale()) }}" alt="{{ $seo->title }}" />
+                                </a>
                             </div>
                             <div class="seo-item__info">
                                 <div class="company-main__title">
